@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:mysql://localhost:3306/sklep
+    username: root
+    password: Password2
+  main:
+    allow-circular-references: true
+    banner-mode: off
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+keycloak:
+  auth-server-url: http://localhost:8180
+  realm: 'PerfumeStore'
+  resource: 'perfumeStoreClient'
+  ssl-required: external
+  use-resource-role-mappings: true
+  bearer-only: true
