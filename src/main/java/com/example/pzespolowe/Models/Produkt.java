@@ -41,28 +41,12 @@ public class Produkt {
     @PrimaryKeyJoinColumn
     private Magazyn magazyn;
 
-    public String getRodzaj() {
-        return rodzaj;
+    public Integer getId() {
+        return id;
     }
 
-    public void setRodzaj(String rodzaj) {
-        this.rodzaj = rodzaj;
-    }
-
-    public Double getCena() {
-        return cena;
-    }
-
-    public void setCena(Double cena) {
-        this.cena = cena;
-    }
-
-    public Integer getPojemnosc() {
-        return pojemnosc;
-    }
-
-    public void setPojemnosc(Integer pojemnosc) {
-        this.pojemnosc = pojemnosc;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNazwaProd() {
@@ -73,11 +57,35 @@ public class Produkt {
         this.nazwaProd = nazwaProd;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getPojemnosc() {
+        return pojemnosc;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPojemnosc(Integer pojemnosc) {
+        this.pojemnosc = pojemnosc;
+    }
+
+    public Double getCena() {
+        return cena;
+    }
+
+    public void setCena(Double cena) {
+        this.cena = cena;
+    }
+
+    public String getRodzaj() {
+        return rodzaj;
+    }
+
+    public void setRodzaj(String rodzaj) {
+        this.rodzaj = rodzaj;
+    }
+
+    public ZdjeciaProd getZdjeciaProd() {
+        return zdjeciaProd;
+    }
+
+    public void setZdjeciaProd(ZdjeciaProd zdjeciaProd) {
+        this.zdjeciaProd = zdjeciaProd;
     }
 }

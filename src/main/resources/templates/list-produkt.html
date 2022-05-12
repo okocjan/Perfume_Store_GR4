@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Test</title>
+    </head>
+    <body>
+        <div>
+            <h2>Lista Klientow</h2>
+            <hr />
+            <table border="1">
+                <th>
+                    <tr>
+                        <th>nazwa</th>
+                        <th>pojemnosc</th>
+                        <th>cena</th>
+                        <th>rodzaj</th>
+                        <th>zdjecie</th>
+                    </tr>
+                </th>
+                <tbody>
+                    <tr th:each="produkt: ${produkty}">
+                        <!--/*@thymesVar id="produkt" type="com.example.pzespolowe.Models.Produkt"*/-->
+                        <td th:text="${produkt.getNazwaProd()}"></td>
+                        <td th:text="${produkt.getPojemnosc()}"></td>
+                        <td th:text="${produkt.getCena()}"></td>
+                        <td th:text="${produkt.getRodzaj()}"></td>
+                        <td th:text="${produkt.getZdjeciaProd().getSrc()}"></td>
+                        <td><img th:src="${produkt.getZdjeciaProd().getSrc()}"/></td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+
+            <div>
+                <div th:each="produkt: ${produkty}">
+                    <!--/*@thymesVar id="produkt" type="com.example.pzespolowe.Models.Produkt"*/-->
+                    <p th:text="${produkt.getNazwaProd()}"></p>
+                    <p th:text="${produkt.getPojemnosc()}"></p>
+                    <p th:text="${produkt.getCena()}"></p>
+                    <p th:text="${produkt.getRodzaj()}"></p>
+                    <p><img th:src="${produkt.getZdjeciaProd().getSrc()}"/></p>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

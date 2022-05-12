@@ -2,8 +2,8 @@ package com.example.pzespolowe.Models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "zamowienie")
@@ -28,54 +28,17 @@ public class Zamowienie {
     private Klient idKl;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_RABAT", nullable = false)
+    @JoinColumn(name = "ID_RABAT", nullable = true)
     private KodyRabatowe idRabat;
 
     @ManyToMany(mappedBy = "zamowienies")
-    private Set<Produkt> produkts = new LinkedHashSet<>();
+    private List<Produkt> produkts = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "zamowienie")
     @PrimaryKeyJoinColumn
     private Wysylki wysylki;
 
-    public Set<Produkt> getProdukts() {
-        return produkts;
-    }
-
-    public void setProdukts(Set<Produkt> produkts) {
-        this.produkts = produkts;
-    }
-
-    public KodyRabatowe getIdRabat() {
-        return idRabat;
-    }
-
-    public void setIdRabat(KodyRabatowe idRabat) {
-        this.idRabat = idRabat;
-    }
-
-    public Klient getIdKl() {
-        return idKl;
-    }
-
-    public void setIdKl(Klient idKl) {
-        this.idKl = idKl;
-    }
-
-    public String getAdresZamiesz() {
-        return adresZamiesz;
-    }
-
-    public void setAdresZamiesz(String adresZamiesz) {
-        this.adresZamiesz = adresZamiesz;
-    }
-
-    public LocalDate getDataZam() {
-        return dataZam;
-    }
-
-    public void setDataZam(LocalDate dataZam) {
-        this.dataZam = dataZam;
+    public Zamowienie() {
     }
 
     public Integer getId() {
@@ -86,5 +49,32 @@ public class Zamowienie {
         this.id = id;
     }
 
+    public LocalDate getDataZam() {
+        return dataZam;
+    }
 
+    public void setDataZam(LocalDate dataZam) {
+        this.dataZam = dataZam;
+    }
+
+    public String getAdresZamiesz() {
+        return adresZamiesz;
+    }
+
+    public void setAdresZamiesz(String adresZamiesz) {
+        this.adresZamiesz = adresZamiesz;
+    }
+
+    public int getIdKl() {
+        return idKl.getId();
+    }
+
+    public void setIdKl(Klient idKl) {
+        this.idKl = idKl;
+    }
+
+
+    public List<Produkt> getProdukts() {
+        return produkts;
+    }
 }

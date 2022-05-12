@@ -1,10 +1,7 @@
 package com.example.pzespolowe.Models;
 
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Table(name = "produkty_zamowienie", indexes = {
@@ -26,27 +23,19 @@ public class ProduktyZamowienie {
     @JoinColumn(name = "ID_PR", nullable = false)
     private Produkt idPr;
 
-    public Produkt getIdPr() {
-        return idPr;
-    }
-
-    public void setIdPr(Produkt idPr) {
-        this.idPr = idPr;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Zamowienie getZamowienie() {
-        return zamowienie;
+    public int getZamowienie() {
+        return zamowienie.getId();
     }
 
     public void setZamowienie(Zamowienie zamowienie) {
         this.zamowienie = zamowienie;
+    }
+
+    public int getIdPr() {
+        return idPr.getId();
+    }
+
+    public void setIdPr(Produkt idPr) {
+        this.idPr = idPr;
     }
 }

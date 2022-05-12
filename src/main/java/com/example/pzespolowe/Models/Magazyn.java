@@ -43,4 +43,6 @@ public class Magazyn {
     public void setProdukt(Produkt produkt) {
         this.produkt = produkt;
     }
+
+
 }
