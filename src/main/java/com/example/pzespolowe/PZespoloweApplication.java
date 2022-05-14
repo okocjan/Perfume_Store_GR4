@@ -14,10 +14,8 @@ public class PZespoloweApplication extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-                .addResourceHandler("/assets/**","/templates/**")
-                .addResourceLocations("/assets/","/templates/","classpath:/assets/");
+        if (!registry.hasMappingForPattern("/assets/**")) {
+            registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/");
+        }
     }
-
-
 }
