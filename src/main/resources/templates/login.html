@@ -1,10 +1,9 @@
-<!DOCTYPE html>    
+<!DOCTYPE html>
 <html lang="pl"xmlns:th="http://www.thymeleaf.org">
 <head>    
     <meta charset="utf-8">
     <title>Strona Logowania</title>    
-    <link rel="stylesheet" type="text/css" th:href="@{../assets/css/style.css}">
-<!--    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">-->
+    <link rel="stylesheet" type="text/css" th:href="@{../assets/css/style_login.css}">
 </head>    
 <header>
          
@@ -21,18 +20,18 @@
 </header>
 <body>       
     <div class="login">    
-    <form id="login">
+    <form id="login" method="get" action="login.php">    
         <label><b>Login:    
         </b>    
         </label>    
-        <input type="text"id="Uname">
+        <input type="text" name="Uname" id="Uname" placeholder="Username">    
         <br><br>    
         <label><b>Haslo:  
         </b>    
         </label>    
-        <input type="Password" id="Pass">
+        <input type="Password" name="Pass" id="Pass" placeholder="Password">    
         <br><br>    
-        <input type="button" id="log" value="Zaloguj">
+        <input type="button" name="log" id="log" value="OK">       
         <br><br>    
         <input type="checkbox" id="check">    
         <span>Zapamiętaj Hasło</span>    

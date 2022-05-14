@@ -1,21 +1,629 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:sec="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
-        <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
-    </head>
-    <body>
-        <main>
-            <menu>
-                <form>
-                    <a th:href="@{/sso/login}" sec:authorize="!isAuthenticated()">Zaloguj</a>
-                    <a th:href="@{/logout}" sec:authorize="isAuthenticated()">Wyloguj</a>
-                </form>
-            </menu>
-        </main>
-    </body>
+<html lang="pl"xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Perfume Store</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" type="text/css" th:href="@{../assets/css/bootstrap.min.css}">
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" th:href="@{../assets/css/style.css}">
+      <!-- Responsive-->
+      <link rel="stylesheet" th:href="@{../assets/css/responsive.css}">
+      <!-- fevicon -->
+      <link rel="icon" href="../assets/img/fevicon.png" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" th:href="@{../assets/css/jquery.mCustomScrollbar.min.css}">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <!-- fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+      <!-- font awesome -->
+      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!--  -->
+      <!-- owl stylesheets -->
+      <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
+      <link rel="stylesheet" th:href="@{../assets/css/owl.carousel.min.css}">
+      <link rel="stylesoeet" th:href="@{../assets/css/owl.theme.default.min.css}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+   </head>
+   <body>
+      <!-- banner bg main start -->
+      <div class="banner_bg_main">
+         <div class="container">
+            <div class="header_section_top">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="custom_menu">
+                        <ul>
+                           <li><a href="#">Bestsellery</a></li>
+                           <li><a href="#">Nowości</a></li>
+                           <li><a href="#">Promocje</a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- header top section start -->
+         <!-- logo section start -->
+         <div class="logo_section">
+            <div class="container">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="logo"><a href="index.html"><img src="../assets/img/logo.png"></a></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- logo section end -->
+         <!-- header section start -->
+         <div class="header_section">
+            <div class="container">
+               <div class="containt_main">
+                  <div id="mySidenav" class="sidenav">
+                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                     <a href="test.html">Strona Głowna</a>
+                     <a href="test.html">Perfumy Męskie</a>
+                     <a href="test.html">Perfumy Damskie</a>
+                  </div>
+                  <span class="toggle_icon" onclick="openNav()"><img src="../assets/img/toggle-icon.png"></span>
+                  <div class="dropdown">
+                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kategorie 
+                     </button>
+                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Wody perfumowane</a>
+                        <a class="dropdown-item" href="#">Wody kolońskie</a>
+                        <a class="dropdown-item" href="#">Wody toaletowe</a>
+                     </div>
+                  </div>
+                  <div class="main">
+                     <!-- Another variation with a button -->
+                     <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Szukaj">
+                        <div class="input-group-append">
+                           <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+                           <i class="fa fa-search"></i>
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="header_box">
+                     <div class="lang_box ">
+                        <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
+                        <img src="../assets/img/flag-poland.png" alt="flag" class="mr-2 " title="Polad"> Polski <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
+                        </a>
+                        <div class="dropdown-menu ">
+                           <a href="#" class="dropdown-item">
+                           <img src="../assets/img/flag-uk.png" class="mr-2" alt="flag">
+                           English
+                           </a>
+                        </div>
+                     </div>
+                     <div class="login_menu">
+                        <ul>
+                           <li><a href="#">
+                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                     
+                              <span class="padding_10">Koszyk</span></a>
+                           </li>
+                           <li><a href="#">
+                              <i class="fa fa-user" aria-hidden="true"></i>
+                              <a href="login.html">Zaloguj się</a>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- header section end -->
+         <!-- banner section start -->
+         <div class="banner_section layout_padding">
+            <div class="container">
+               <div id="my_slider" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                     <div class="carousel-item active">
+                        <div class="row">
+                           <div class="col-sm-12">
+                              <h1 class="banner_taital">Wszystkie Perfumy <br>W jedym miejscu</h1>
+                              <div class="buynow_bt"><a href="#">KUP TERAZ</a></div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="carousel-item">
+                        <div class="row">
+                           <div class="col-sm-12">
+                              <h1 class="banner_taital">Wszystkie Perfumy <br>W jedym miejscu</h1>
+                              <div class="buynow_bt"><a href="#">KUP TERAZ</a></div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="carousel-item">
+                        <div class="row">
+                           <div class="col-sm-12">
+                              <h1 class="banner_taital">Wszystkie Perfumy <br>W jedym miejscu</h1>
+                              <div class="buynow_bt"><a href="#">KUP TERAZ</a></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+                  <i class="fa fa-angle-left"></i>
+                  </a>
+                  <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+                  <i class="fa fa-angle-right"></i>
+                  </a>
+               </div>
+            </div>
+         </div>
+         <!-- banner section end -->
+      </div>
+
+      <div class="perfume_section">
+         <div id="main_slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                  <div class="container">
+                     <h1 class="perfume_taital">Wody perfumowane</h1>
+                     <div class="perfume_section_2">
+                        <div class="row">
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Calvin Klein - CK IN2U</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="perfume_img"><img src="../assets/img/calvin-klein-ck-in2u-eau-de-toilette-pentru-femei___29.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Calvin Klein - Eternity Air</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="perfume_img"><img src="../assets/img/calvin-klein-eternity-air-woda-perfumowana-dla-kobiet___5.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Calvin Klein - Eternity Eau Fresh</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="perfume_img"><img src="../assets/img/calvin-klein-eternity-eau-fresh-woda-perfumowana-dla-kobiet_.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="container">
+                     <h1 class="perfume_taital">Wody perfumowane</h1>
+                     <div class="perfume_section_2">
+                        <div class="row">
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Calvin Klein - Eternity Summer 2020</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="perfume_img"><img src="../assets/img/calvin-klein-eternity-summer-2020-woda-perfumowana-dla-kobiet_.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Calvin Klein - Obsession</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="perfume_img"><img src="../assets/img/calvin-klein-obsession-woda-perfumowana-dla-kobiet___29.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Carolina Herrera - Good Girl</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="perfume_img"><img src="../assets/img/carolina-herrera-good-girl-woda-perfumowana-dla-kobiet___17.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="container">
+                     <h1 class="perfume_taital">Wody perfumowane</h1>
+                     <div class="perfume_section_2">
+                        <div class="row">
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Chanel - N°19</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="perfume_img"><img src="../assets/img/chanel-n19-woda-perfumowana-z-atomizerem-dla-kobiet___26.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Yves Saint Laurent - Y</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="perfume_img"><img src="../assets/img/yves-saint-laurent-y-woda-perfumowana-dla-mezczyzn___3.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Davidoff - Cool Water Intense</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="perfume_img"><img src="../assets/img/davidoff-cool-water-intense-woda-perfumowana-dla-mezczyzn_.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+            </a>
+         </div>
+      </div>
+
+
+      <div class="perfume_section">
+         <div id="cologne_main_slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                  <div class="container">
+                     <h1 class="perfume_taital">Wody kolońskie</h1>
+                     <div class="perfume_section_2">
+                        <div class="row">
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">DIOR - Sauvage</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="cologne_img"><img src="../assets/img/dior-sauvage-woda-perfumowana-dla-mezczyzn___5.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Dolce & Gabbana - The One for Men</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="cologne_img"><img src="../assets/img/dolce-gabbana-the-one-for-men-woda-perfumowana-dla-mezczyzn___20.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Eisenberg - Diabolique</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="cologne_img"><img src="../assets/img/eisenberg-diabolique-woda-perfumowana-dla-mezczyzn___15.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="container">
+                     <h1 class="perfume_taital">Wody kolońskie</h1>
+                     <div class="perfume_section_2">
+                        <div class="row">
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Hugo Boss - BOSS The Scent'</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="cologne_img"><img src="../assets/img/hugo-boss-boss-the-scent-woda-toaletowa-dla-mezczyzn___19.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="cperfume_text">JOOP! - Homme Absolute</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="cologne_img"><img src="../assets/img/joop-homme-absolute-woda-perfumowana-dla-mezczyzn___3.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Kenzo - Homme</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="cologne_img"><img src="../assets/img/kenzo-homme-woda-perfumowana-dla-mezczyzn___17.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="container">
+                     <h1 class="perfume_taital">Wody kolońskie</h1>
+                     <div class="perfume_section_2">
+                        <div class="row">
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Versace - Woman</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="cologne_img"><img src="../assets/img/versace-woman-woda-perfumowana-dla-kobiet___23.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Lacoste - Eau de Lacoste L.12.12 Blanc</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="cologne_img"><img src="../assets/img/lacoste-eau-de-lacoste-l-12-12-blanc-woda-toaletowa-dla-mezczyzn___20.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Mexx - Black Man</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="cologne_img"><img src="../assets/img/mexx-black-man-woda-toaletowa-dla-mezczyzn___22.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <a class="carousel-control-prev" href="#cologne_main_slider" role="button" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="carousel-control-next" href="#cologne_main_slider" role="button" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+            </a>
+         </div>
+      </div>
+
+      <div class="toilet_water_section">
+         <div id="toilet_water_main_slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                  <div class="container">
+                     <h1 class="perfume_taital">Wody toaletowe</h1>
+                     <div class="perfume_section_2">
+                        <div class="row">
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Oriflame - Possess The Secret Man</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="toilet_water_img"><img src="../assets/img/oriflame-possess-the-secret-man-woda-perfumowana-dla-mezczyzn___5.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Paco Rabanne - 1 Million Parfum'</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="toilet_water_img"><img src="../assets/img/paco-rabanne-1-million-parfum-perfumy-dla-mezczyzn_.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Paco Rabanne - Invictus Victory</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="toilet_water_img"><img src="../assets/img/paco-rabanne-invictus-victory-woda-perfumowana-dla-mezczyzn_.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="container">
+                     <h1 class="perfume_taital">Wody toaletowe</h1>
+                     <div class="perfume_section_2">
+                        <div class="row">
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Paco Rabanne - Olympéa Blossom</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="toilet_water_img"><img src="../assets/img/paco-rabanne-olympea-blossom-woda-perfumowana-dla-kobiet_.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Trussardi - Levriero Collection Uomo</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="toilet_water_img"><img src="../assets/img/trussardi-levriero-collection-uomo-woda-perfumowana-dla-mezczyzn_.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Ralph Lauren - Polo Blue Deep Blue</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="toilet_water_img"><img src="../assets/img/ralph-lauren-polo-blue-deep-blue-perfumy-dla-mezczyzn_.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="container">
+                     <h1 class="perfume_taital">Wody toaletowe</h1>
+                     <div class="perfume_section_2">
+                        <div class="row">
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">Ralph Lauren - Woman Intenses</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="toilet_water_img"><img src="../assets/img/ralph-lauren-woman-intense-woda-perfumowana-dla-kobiet_.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">TOM FORD - Grey Vetiver</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="toilet_water_img"><img src="../assets/img/tom-ford-grey-vetiver-woda-perfumowana-dla-mezczyzn___19.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-sm-4">
+                              <div class="box_main">
+                                 <h4 class="perfume_text">TOM FORD - Velvet Orchid</h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
+                                 <div class="toilet_water_img"><img src="../assets/img/tom-ford-velvet-orchid-woda-perfumowana-dla-kobiet___15.jpeg"></div>
+                                 <div class="btn_main">
+                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
+                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <a class="carousel-control-prev" href="#toilet_water_main_slider" role="button" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="carousel-control-next" href="#toilet_water_main_slider" role="button" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+            </a>
+            <div class="loader_main">
+               <div class="loader"></div>
+            </div>
+         </div>
+      </div>
+
+      <div class="footer_section layout_padding">
+         <div class="container">
+            <div class="footer_logo"><a href="index.html"><img src="../assets/img/logo_footer.png"></a></div>
+            <div class="input_bt">
+               <input type="text" class="mail_bt" placeholder="Twój Email" name="Twój Email">
+               <span class="subscribe_bt" id="basic-addon2"><a href="#">Subskrybuj</a></span>
+            </div>
+            <div class="footer_menu">
+               <ul>
+                  <li><a href="#">Bestsellery</a></li>
+                  <li><a href="#">Nowości</a></li>
+                  <li><a href="#">Promocje</a></li>
+               </ul>
+            </div>
+         </div>
+      </div>
+      <!-- footer section end -->
+
+      <!-- Javascript files-->
+      <script type="text/javascript" th:src="@{../assets/js/jquery.min.js}"></script>
+      <script type="text/javascript" th:src="@{../assets/js/popper.min.js}"></script>
+      <script type="text/javascript" th:src="@{../assets/js/bootstrap.bundle.min.js}"></script>
+      <script type="text/javascript" th:src="@{../assets/js/jquery-3.0.0.min.js}"></script>
+      <script type="text/javascript" th:src="@{../assets/js/plugin.js}"></script>
+      <!-- sidebar -->
+      <script type="text/javascript" th:src="@{../assets/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+      <script type="text/javascript" th:src="@{../assets/js/custom.js}"></script>
+      <script>
+         function openNav() {
+           document.getElementById("mySidenav").style.width = "250px";
+         }
+         
+         function closeNav() {
+           document.getElementById("mySidenav").style.width = "0";
+         }
+      </script>
+   </body>
 </html>
