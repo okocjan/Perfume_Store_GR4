@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns="http://www.thymeleaf.org">
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport"
@@ -11,39 +11,19 @@
         <div>
             <h2>Lista Klientow</h2>
             <hr />
-            <table border="1">
-                <th>
-                    <tr>
-                        <th>nazwa</th>
-                        <th>pojemnosc</th>
-                        <th>cena</th>
-                        <th>rodzaj</th>
-                        <th>zdjecie</th>
-                    </tr>
-                </th>
-                <tbody>
-                    <tr th:each="produkt: ${produkty}">
-                        <!--/*@thymesVar id="produkt" type="com.example.pzespolowe.Models.Produkt"*/-->
-                        <td th:text="${produkt.getNazwaProd()}"></td>
-                        <td th:text="${produkt.getPojemnosc()}"></td>
-                        <td th:text="${produkt.getCena()}"></td>
-                        <td th:text="${produkt.getRodzaj()}"></td>
-                        <td th:text="${produkt.getZdjeciaProd().getSrc()}"></td>
-                        <td><img th:src="${produkt.getZdjeciaProd().getSrc()}"/></td>
 
-                    </tr>
-                </tbody>
-            </table>
-            <hr />
+            <br /><br /><br /><br />
+
 
             <div>
                 <div th:each="produkt: ${produkty}">
                     <!--/*@thymesVar id="produkt" type="com.example.pzespolowe.Models.Produkt"*/-->
-                    <p th:text="${produkt.getNazwaProd()}"></p>
-                    <p th:text="${produkt.getPojemnosc()}"></p>
-                    <p th:text="${produkt.getCena()}"></p>
-                    <p th:text="${produkt.getRodzaj()}"></p>
-                    <p><img th:src="${produkt.getZdjeciaProd().getSrc()}"/></p>
+                    <p th:text="${produkt.nazwaProd}"></p>
+                    <p th:text="${produkt.pojemnosc}"></p>
+                    <p th:text="${produkt.cena}"></p>
+                    <p th:text="${produkt.rodzaj}"></p>
+                    <p><img th:src="${produkt.zdjeciaProd.src}" alt="image"/></p>
+                    <a th:href="@{/test/str-prod(id=${produkt.id})}">Zobacz więcej</a>
                 </div>
             </div>
 
