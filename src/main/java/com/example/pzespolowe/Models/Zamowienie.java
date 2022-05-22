@@ -34,9 +34,15 @@ public class Zamowienie {
     @ManyToMany(mappedBy = "zamowienies")
     private List<Produkt> produkts = new ArrayList<>();
 
+//    @OneToMany(mappedBy = "zamowienie")
+//    private List<ProduktyZamowienie> produktyZamowienies;
+
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "zamowienie")
     @PrimaryKeyJoinColumn
     private Wysylki wysylki;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     public Zamowienie() {
     }
@@ -73,8 +79,11 @@ public class Zamowienie {
         this.idKl = idKl;
     }
 
+    public Status getStatus() {
+        return status;
+    }
 
-    public List<Produkt> getProdukts() {
-        return produkts;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

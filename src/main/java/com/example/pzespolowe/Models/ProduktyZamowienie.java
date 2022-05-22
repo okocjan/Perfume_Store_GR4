@@ -4,38 +4,30 @@ package com.example.pzespolowe.Models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "produkty_zamowienie", indexes = {
-        @Index(name = "ID_ZAM_FK", columnList = "ID_ZAM"),
-        @Index(name = "ID_PR_FK", columnList = "ID_PR")
-})
+@Table(name = "produkty_zamowienie")
 public class ProduktyZamowienie {
     @Id
     @Column(name = "ID_ZAM")
     private Integer id;
 
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_ZAM")
+    @MapsId
     private Zamowienie zamowienie;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_PR", nullable = false)
     private Produkt idPr;
 
-    public int getZamowienie() {
-        return zamowienie.getId();
+    public Integer getId() {
+        return id;
     }
 
-    public void setZamowienie(Zamowienie zamowienie) {
-        this.zamowienie = zamowienie;
+    public Zamowienie getZamowienie() {
+        return zamowienie;
     }
 
-    public int getIdPr() {
-        return idPr.getId();
-    }
-
-    public void setIdPr(Produkt idPr) {
-        this.idPr = idPr;
+    public Produkt getIdPr() {
+        return idPr;
     }
 }
