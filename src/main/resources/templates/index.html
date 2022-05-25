@@ -83,7 +83,6 @@
                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Perfumy Damskie</a>
                         <a class="dropdown-item" href="#">Perfumy Męskie</a>
-                        <a class="dropdown-item" href="#">Wody toaletowe</a>
                      </div>
                   </div>
                   <div class="main">
@@ -170,40 +169,16 @@
       </div>
 
       <div class="perfume_section">
-         <div id="main_slider" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
                   <div class="container">
                      <h1 class="perfume_taital">Perfumy Damskie</h1>
                      <div class="perfume_section_2">
                         <div class="row">
-                           <div class="col-lg-4 col-sm-4">
+                           <div class="col-lg-4 col-sm-4" th:each="damski :${damskie}">
                               <div class="box_main">
-                                 <h4 class="perfume_text">Calvin Klein - CK IN2U</h4>
-                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
-                                 <div class="perfume_img"><img src="../assets/MainPage/img/calvin-klein-ck-in2u-eau-de-toilette-pentru-femei___29.jpeg"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
-                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="perfume_text">Calvin Klein - Eternity Air</h4>
-                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
-                                 <div class="perfume_img"><img src="../assets/MainPage/img/calvin-klein-eternity-air-woda-perfumowana-dla-kobiet___5.jpeg"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
-                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="perfume_text">Calvin Klein - Eternity Eau Fresh</h4>
-                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
-                                 <div class="perfume_img"><img src="../assets/MainPage/img/calvin-klein-eternity-eau-fresh-woda-perfumowana-dla-kobiet_.jpeg"></div>
+                                 <h4 class="perfume_text" th:text="${damski.nazwa}"></h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;" th:text="${damski.cena}" ></span></p>
+                                 <div class="perfume_img"><img src="../assets/MainPage/img/calvin-klein-ck-in2u-eau-de-toilette-pentru-femei___29.jpeg"
+                                                               th:src="${damski.imagePath}"></div>
                                  <div class="btn_main">
                                     <div class="buy_bt"><a href="#">Kup Teraz</a></div>
                                     <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
@@ -213,222 +188,18 @@
                         </div>
                      </div>
                   </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="perfume_taital">Perfumy Damskie</h1>
-                     <div class="perfume_section_2">
-                        <div class="row">
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="perfume_text">Calvin Klein - Eternity Summer 2020</h4>
-                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
-                                 <div class="perfume_img"><img src="../assets/MainPage/img/calvin-klein-eternity-summer-2020-woda-perfumowana-dla-kobiet_.jpeg"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
-                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="perfume_text">Calvin Klein - Obsession</h4>
-                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
-                                 <div class="perfume_img"><img src="../assets/MainPage/img/calvin-klein-obsession-woda-perfumowana-dla-kobiet___29.jpeg"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
-                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="perfume_text">Carolina Herrera - Good Girl</h4>
-                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
-                                 <div class="perfume_img"><img src="../assets/MainPage/img/carolina-herrera-good-girl-woda-perfumowana-dla-kobiet___17.jpeg"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
-                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="perfume_taital">Perfumy Damskie</h1>
-                     <div class="perfume_section_2">
-                        <div class="row">
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="perfume_text">Chanel - N°19</h4>
-                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
-                                 <div class="perfume_img"><img src="../assets/MainPage/img/chanel-n19-woda-perfumowana-z-atomizerem-dla-kobiet___26.jpeg"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
-                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="perfume_text">Yves Saint Laurent - Y</h4>
-                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
-                                 <div class="perfume_img"><img src="../assets/MainPage/img/yves-saint-laurent-y-woda-perfumowana-dla-mezczyzn___3.jpeg"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
-                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="perfume_text">Davidoff - Cool Water Intense</h4>
-                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
-                                 <div class="perfume_img"><img src="../assets/MainPage/img/davidoff-cool-water-intense-woda-perfumowana-dla-mezczyzn_.jpeg"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
-                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-            </a>
-            <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-            </a>
-         </div>
       </div>
-
-
       <div class="perfume_section">
-         <div id="cologne_main_slider" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
                   <div class="container">
                      <h1 class="perfume_taital">Perfumy Męskie</h1>
                      <div class="perfume_section_2">
                         <div class="row">
-                           <div class="col-lg-4 col-sm-4">
+                           <div class="col-lg-4 col-sm-4" th:each="meski :${meskie}">
                               <div class="box_main">
-                                 <h4 class="perfume_text">DIOR - Sauvage</h4>
-                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
-                                 <div class="cologne_img"><img src="../assets/MainPage/img/dior-sauvage-woda-perfumowana-dla-mezczyzn___5.jpeg"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
-                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="perfume_text">Dolce & Gabbana - The One for Men</h4>
-                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
-                                 <div class="cologne_img"><img src="../assets/MainPage/img/dolce-gabbana-the-one-for-men-woda-perfumowana-dla-mezczyzn___20.jpeg"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
-                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="perfume_text">Eisenberg - Diabolique</h4>
-                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
-                                 <div class="cologne_img"><img src="../assets/MainPage/img/eisenberg-diabolique-woda-perfumowana-dla-mezczyzn___15.jpeg"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
-                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-<!--               <div class="carousel-item">-->
-<!--                  <div class="container">-->
-<!--                     <h1 class="perfume_taital">Perfumy Męskie</h1>-->
-<!--                     <div class="perfume_section_2">-->
-<!--                        <div class="row">-->
-<!--                           <div class="col-lg-4 col-sm-4">-->
-<!--                              <div class="box_main">-->
-<!--                                 <h4 class="perfume_text">Hugo Boss - BOSS The Scent'</h4>-->
-<!--                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>-->
-<!--                                 <div class="cologne_img"><img src="../assets/MainPage/img/hugo-boss-boss-the-scent-woda-toaletowa-dla-mezczyzn___19.jpeg"></div>-->
-<!--                                 <div class="btn_main">-->
-<!--                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>-->
-<!--                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>-->
-<!--                                 </div>-->
-<!--                              </div>-->
-<!--                           </div>-->
-<!--                           <div class="col-lg-4 col-sm-4">-->
-<!--                              <div class="box_main">-->
-<!--                                 <h4 class="perfume_text">JOOP! - Homme Absolute</h4>-->
-<!--                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>-->
-<!--                                 <div class="cologne_img"><img src="../assets/MainPage/img/joop-homme-absolute-woda-perfumowana-dla-mezczyzn___3.jpeg"></div>-->
-<!--                                 <div class="btn_main">-->
-<!--                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>-->
-<!--                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>-->
-<!--                                 </div>-->
-<!--                              </div>-->
-<!--                           </div>-->
-<!--                           <div class="col-lg-4 col-sm-4">-->
-<!--                              <div class="box_main">-->
-<!--                                 <h4 class="perfume_text">Kenzo - Homme</h4>-->
-<!--                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>-->
-<!--                                 <div class="cologne_img"><img src="../assets/MainPage/img/kenzo-homme-woda-perfumowana-dla-mezczyzn___17.jpeg"></div>-->
-<!--                                 <div class="btn_main">-->
-<!--                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>-->
-<!--                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>-->
-<!--                                 </div>-->
-<!--                              </div>-->
-<!--                           </div>-->
-<!--                        </div>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--               </div>-->
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="perfume_taital">Perfumy Męskie</h1>
-                     <div class="perfume_section_2">
-                        <div class="row">
-                           <div class="col-lg-4 col-sm-4" th:each="produkt :${produkty}">
-                              <div class="box_main">
-                                 <h4 class="perfume_text" th:text="${produkt.nazwa}"></h4>
-                                 <p class="price_text">Cena:  <span style="color: #262626;" th:text="${produkt.cena}">63,90 zł</span></p>
+                                 <h4 class="perfume_text" th:text="${meski.nazwa}"></h4>
+                                 <p class="price_text">Cena:  <span style="color: #262626;" th:text="${meski.cena}"></span></p>
                                  <div class="cologne_img"><img src="../assets/MainPage/img/versace-woman-woda-perfumowana-dla-kobiet___23.jpeg"
-                                                               th:src="${produkt.imagePath}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
-                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="perfume_text">Lacoste - Eau de Lacoste L.12.12 Blanc</h4>
-                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
-                                 <div class="cologne_img"><img src="../assets/MainPage/img/lacoste-eau-de-lacoste-l-12-12-blanc-woda-toaletowa-dla-mezczyzn___20.jpeg"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Kup Teraz</a></div>
-                                    <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="perfume_text">Mexx - Black Man</h4>
-                                 <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p>
-                                 <div class="cologne_img"><img src="../assets/MainPage/img/mexx-black-man-woda-toaletowa-dla-mezczyzn___22.jpeg"></div>
+                                                               th:src="${meski.imagePath}"></div>
                                  <div class="btn_main">
                                     <div class="buy_bt"><a href="#">Kup Teraz</a></div>
                                     <div class="seemore_bt"><a href="#">Zobacz Więcej</a></div>
@@ -438,15 +209,6 @@
                         </div>
                      </div>
                   </div>
-               </div>
-            </div>
-            <a class="carousel-control-prev" href="#cologne_main_slider" role="button" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-            </a>
-            <a class="carousel-control-next" href="#cologne_main_slider" role="button" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-            </a>
-         </div>
       </div>
 
 <!--      <div class="toilet_water_section">-->
