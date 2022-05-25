@@ -16,7 +16,8 @@ public class MainPageController {
     @GetMapping("/")
     public ModelAndView getMainPage(){
         ModelAndView mav = new ModelAndView("index");
-        mav.addObject("produkty", service.getProdukts());
+        mav.addObject("damskie", service.getProdukts().get(0));
+        mav.addObject("meskie", service.getProdukts().get(1));
         return mav;
     }
 }
