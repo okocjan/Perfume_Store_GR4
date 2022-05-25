@@ -19,4 +19,5 @@ public interface ProduktyZamowienieRepository extends JpaRepository<ProduktyZamo
     @Query(nativeQuery = true, value = "SELECT p.ID_PR, p.ID_ZAM FROM produkty_zamowienie as p " +
             "JOIN zamowienie as z ON p.ID_ZAM = z.ID WHERE z.STATUS = 'IN_PROGRESS'")
     List<ProduktyZamowienie> findProduktyZamowienieByStatus();
+
 }
