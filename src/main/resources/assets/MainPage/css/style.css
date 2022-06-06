@@ -211,7 +211,7 @@ button {
 .banner_bg_main {
     width: 100%;
     float: left;
-    background: url(/assets/AdminPanel/img/banner-bg.png);
+    background-image: url(/assets/AdminPanel/img/banner-bg.png);
     height: auto;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -339,7 +339,7 @@ button {
 
 .toggle_icon {
     cursor: pointer;
-    color: #ffffff;
+    color: #000000;
     order: 2;
 }
 
@@ -432,7 +432,7 @@ button {
 }
 
 .login_menu li a {
-    color: #ffffff;
+    color: #000000;
 }
 
 .login_menu li a:hover {
@@ -573,6 +573,24 @@ a:hover {
     box-shadow: 0px 0 30px 10px #f0f0f0;
     margin-bottom: 20px;
 }
+.box_product {
+    width: 40%;
+    display: inline-block;
+    background-color: transparent;
+    height: auto;
+    padding: 50x;
+    margin-right: 50px;
+    margin-bottom: 100px;
+    margin-left: 50px;
+    margin-top: 100px;
+}
+.box_product_info {
+    display: inline-block;
+    background-color: transparent;
+    height: auto;
+    padding: 50x;
+    margin-bottom: 100px;
+}
 
 .perfume_text {
     width: 100%;
@@ -590,8 +608,44 @@ a:hover {
     text-align: center;
     margin: 0px;
 }
+.product_desc {
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+    margin: 0px;
+}
+.product_desc_long{
+    width: 40%;
+    display: inline-block;
+    height: auto;
+    padding: 50x;
+    background-color: #ffffff;
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom:  50px;
+}
+.description{
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom:  50px;
+}
+.description_top{
+    width: 100%;
+    color: #000000;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom:  20px;
+}
 
 .perfume_img {
+    width: 100%;
+    text-align: center;
+    margin: 50px 0px;
+    min-height: 370px;
+}
+.product_img {
     width: 100%;
     text-align: center;
     margin: 50px 0px;
@@ -607,6 +661,15 @@ a:hover {
     float: left;
     width: 100%;
 }
+.buy_bt_single {
+    text-align: center;
+    margin-top: 50px;
+    width: 100%;
+}
+.buy_product {
+    float: left;
+    width: 100%;
+}
 
 .buy_bt a {
     width: 100%;
@@ -616,8 +679,20 @@ a:hover {
     text-align: right;
     font-weight: bold;
 }
+.buy_bt_single a {
+    width: 100%;
+    font-size: 16px;
+    color: #f26522;
+    background-color: transparent;
+    text-align: right;
+    font-weight: bold;
+}
 
 .buy_bt a:hover {
+    background-color: transparent;
+    color: #262626;
+}
+.buy_bt_single a:hover {
     background-color: transparent;
     color: #262626;
 }
