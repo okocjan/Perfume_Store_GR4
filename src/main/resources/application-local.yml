@@ -11,7 +11,10 @@ spring:
   main:
     allow-circular-references: true
     banner-mode: off
-
+server:
+  error:
+    whitelabel:
+      enabled: false
 management:
   endpoints:
     web:

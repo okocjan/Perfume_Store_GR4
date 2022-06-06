@@ -24,6 +24,9 @@ public class Produkt {
     @Column(name = "RODZAJ", nullable = false, length = 1)
     private String rodzaj;
 
+    @Column(name = "OPIS", nullable = false)
+    private String opis;
+
     @OneToMany(mappedBy = "idPr")
     private Set<Opinie> opinies = new LinkedHashSet<>();
 
@@ -90,6 +93,14 @@ public class Produkt {
 
     public void setRodzaj(String rodzaj) {
         this.rodzaj = rodzaj;
+    }
+
+    public String getOpis() {
+        return opis;
+    }
+
+    public void setOpis(String opis) {
+        this.opis = opis;
     }
 
     public ZdjeciaProd getZdjeciaProd() {

@@ -8,6 +8,8 @@ public class ProdAndZdjModel {
     private int pojemnosc;
     private String imagePath;
 
+    private String opis;
+
     public ProdAndZdjModel() {
     }
 
@@ -59,13 +61,22 @@ public class ProdAndZdjModel {
         this.imagePath = imagePath;
     }
 
+    public String getOpis() {
+        return opis;
+    }
+
+    public void setOpis(String opis) {
+        this.opis = opis;
+    }
+
     @Override
     public String toString() {
-        return "\nid=" + id +
-                ", nazwa='" + nazwa +
-                ", rodzaj='" + rodzaj +
-                ", cena=" + cena +
-                ", pojemnosc=" + pojemnosc +
-                ", imagePath='" + imagePath + "\n";
+        return "\nid = " + id +
+                ", nazwa = " + nazwa +
+                ", rodzaj = " + rodzaj +
+                ", cena = " + cena +
+                ", pojemnosc = " + pojemnosc +
+                ", imagePath = " + imagePath +
+                ", opis = " + opis + "\n";
     }
 }

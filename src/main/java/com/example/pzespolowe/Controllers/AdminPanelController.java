@@ -71,12 +71,6 @@ public class AdminPanelController {
         return "redirect:/panel/admin/add_product";
     }
 
-    @GetMapping("/profile")
-    public ModelAndView showProfilePage() {
-        ModelAndView mav = new ModelAndView("/admin/profile");
-        return mav;
-    }
-
     @GetMapping("/fontawesome")
     public ModelAndView showFontPage() {
         ModelAndView mav = new ModelAndView("/admin/fontawesome");
