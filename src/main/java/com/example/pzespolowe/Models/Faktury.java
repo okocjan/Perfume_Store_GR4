@@ -21,7 +21,7 @@ public class Faktury {
     private String nazwaFir;
 
     @Column(name = "NIP", nullable = false)
-    private Integer nip;
+    private Long nip;
 
     @Column(name = "DATA_WYST", nullable = false)
     private LocalDate dataWyst;
@@ -41,11 +41,11 @@ public class Faktury {
         this.dataWyst = dataWyst;
     }
 
-    public Integer getNip() {
+    public Long getNip() {
         return nip;
     }
 
-    public void setNip(Integer nip) {
+    public void setNip(Long nip) {
         this.nip = nip;
     }
 

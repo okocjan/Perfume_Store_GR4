@@ -27,8 +27,8 @@ public class Zamowienie {
     @JoinColumn(name = "ID_KL", nullable = false)
     private Klient idKl;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_RABAT", nullable = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_RABAT")
     private KodyRabatowe idRabat;
 
     @ManyToMany(mappedBy = "zamowienies")
@@ -43,6 +43,8 @@ public class Zamowienie {
 
     @Enumerated(EnumType.STRING)
     private Status status;
+
+
 
     public Zamowienie() {
     }
@@ -85,5 +87,24 @@ public class Zamowienie {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public List<Produkt> getProdukts() {
+        return produkts;
+    }
+
+    @Override
+    public String toString() {
+        return "Zamowienie{" +
+                "id=" + id +
+                ", dataZam=" + dataZam +
+                ", adresZamiesz='" + adresZamiesz + '\'' +
+                ", faktury=" + faktury +
+                ", idKl=" + idKl +
+                ", idRabat=" + idRabat +
+                ", produkts=" + produkts +
+                ", wysylki=" + wysylki +
+                ", status=" + status +
+                '}';
     }
 }

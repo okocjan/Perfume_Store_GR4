@@ -118,7 +118,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item pt-2">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link active" href="dashboard.html"
                            th:href="@{__${#httpServletRequest.requestURL}__/../../proces}" aria-expanded="false">
                             <i class="fas fa-cogs" aria-hidden="true"></i>
                             <span class="hide-menu">Proces</span>
@@ -135,7 +135,7 @@
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="basic-table.html"
                            th:href="@{__${#httpServletRequest.requestURL}__/../../basic-table}" aria-expanded="false">
                             <i class="fa fa-table" aria-hidden="true"></i>
-                            <span class="hide-menu">Basic Table</span>
+                            <span class="hide-menu">Zamknięte zamówienia</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -147,9 +147,9 @@
                     </li>
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="add_product.html"
-                           th:href="@{__${#httpServletRequest.requestURL}__/../../add_product}" aria-expanded="false">
-                            <i class="fa fa-columns" aria-hidden="true"></i>
-                            <span class="hide-menu">Blank Page</span>
+                           th:href="@{__${#httpServletRequest.requestURL}__/../add_product}" aria-expanded="false">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <span class="hide-menu">Dodaj produkt</span>
                         </a>
                     </li>
                     <li class="sidebar-item" hidden="hidden">
@@ -209,7 +209,7 @@
                             <ul>
                                 <!-- User Profile-->
                                 <li class="sidebar-item pt-2">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link active" href="dashboard.html"
                                        th:href="@{__${#httpServletRequest.requestURL}__/../select}" aria-expanded="false">
                                         <i class="fas fa-cog" aria-hidden="true"></i>
                                         <span class="hide-menu" style="color: black">Wybór zamówień</span>
@@ -251,27 +251,33 @@
                     <div class="white-box">
                         <h3 class="box-title">Wybór zamówień</h3>
                         <div class="table-responsive">
-                            <table class="table text-nowrap">
-                                <thead>
-                                <tr>
-                                    <th class="border-top-0">ID</th>
-                                    <th class="border-top-0">Data Zamówienia</th>
-                                    <th class="border-top-0">Adres Zamieszkania</th>
-                                    <th class="border-top-0">Numer Klienta</th>
-                                    <th class="border-top-0">Status</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="zamowienie :${zamowienia}">
-                                    <!--/*@thymesVar id="zamowienie" type="com.example.pzespolowe.Models.Zamowienie"*/-->
-                                    <td th:text="${zamowienie.id}"></td>
-                                    <td th:text="${zamowienie.dataZam}"></td>
-                                    <td th:text="${zamowienie.adresZamiesz}"></td>
-                                    <td th:text="${zamowienie.idKl}"></td>
-                                    <td th:text="${zamowienie.getStatus()}"></td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <form action="#" th:action="@{/panel/admin/proces/toggle}"
+                                  th:object="${zamowienia}" th:method="post">
+                                <table class="table text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th><input type="checkbox" onclick="toggle(this)"></th>
+                                        <th class="border-top-0">ID</th>
+                                        <th class="border-top-0">Data Zamówienia</th>
+                                        <th class="border-top-0">Adres Zamieszkania</th>
+                                        <th class="border-top-0">Numer Klienta</th>
+                                        <th class="border-top-0">Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="zamowienie :${zamowienia}">
+                                        <!--/*@thymesVar id="zamowienie" type="com.example.pzespolowe.Models.Zamowienie"*/-->
+                                        <td><input type="checkbox" name="select_order" th:value="${zamowienie.id}"></td>
+                                        <td th:text="${zamowienie.id}"></td>
+                                        <td th:text="${zamowienie.dataZam}"></td>
+                                        <td th:text="${zamowienie.adresZamiesz}"></td>
+                                        <td th:text="${zamowienie.idKl}"></td>
+                                        <td th:text="${zamowienie.getStatus()}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <input type="submit" class="btn btn-primary right" style="height: 50px; width: 100%;" value="Wybierz" />
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -304,6 +310,14 @@
     <!-- End Page wrapper  -->
     <!-- ============================================================== -->
 </div>
+<script language="JavaScript">
+    function toggle(source) {
+        checkboxes = document.getElementsByName('select_order');
+        for(var i=0, n=checkboxes.length;i<n;i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
+</script>
 <!-- ============================================================== -->
 <!-- End Wrapper -->
 <!-- ============================================================== -->

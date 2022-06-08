@@ -11,7 +11,7 @@
     <meta name="description"
         content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>Ample Admin Lite Template by WrapPixel</title>
+    <title>Dodaj produkt</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/AdminPanel/plugins/images/favicon.png">
@@ -133,7 +133,7 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="basic-table.html"
                                th:href="@{__${#httpServletRequest.requestURL}__/../basic-table}" aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
-                                <span class="hide-menu">Basic Table</span>
+                                <span class="hide-menu">Zamknięte zamówienia</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -146,7 +146,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="add_product.html"
                                th:href="@{__${#httpServletRequest.requestURL}__/../add_product}" aria-expanded="false">
-                                <i class="fa fa-columns" aria-hidden="true"></i>
+                                <i class="fa fa-plus" aria-hidden="true"></i>
                                 <span class="hide-menu">Dodaj produkt</span>
                             </a>
                         </li>
@@ -177,7 +177,7 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Blank Page</h4>
+                        <h4 class="page-title">Dodaj produkt</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
@@ -202,7 +202,39 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="white-box">
-                            <h3 class="box-title">Blank Page</h3>
+                            <form method="post" action="#" th:action="@{/panel/admin/add_product/add}" th:object="${addDto}">
+                                <div class="form-group">
+                                    <label for="name">Nazwa produktu</label>
+                                    <input type="text" class="form-control" id="name" aria-describedby="nameHelp"
+                                           th:field="*{name}" placeholder="Nazwa produktu">
+                                </div>
+                                <div class="form-group">
+                                    <label for="size-ml">Pojemność</label>
+                                    <input type="number" class="form-control" id="size-ml"
+                                           th:field="*{capacity}" placeholder="Pojemność">
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Cena</label>
+                                    <input type="number" class="form-control" id="price"
+                                           th:field="*{price}" placeholder="Cena">
+                                </div>
+                                <div class="form-group">
+                                    <label for="type">Rodzaj</label>
+                                    <select class="form-control" id="type" th:field="*{type}">
+                                        <option value="D">Damskie</option>
+                                        <option value="M">Męskie</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quantity">Ilość sztuk</label>
+                                    <input type="number" class="form-control" id="quantity"
+                                           th:field="*{quantity}" placeholder="Ilość">
+                                </div>
+                                <div class="form-group">
+                                    <input type="file" name="file" class="form-control-file">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Dodaj</button>
+                            </form>
                         </div>
                     </div>
                 </div>
