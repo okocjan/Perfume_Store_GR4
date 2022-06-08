@@ -10,6 +10,7 @@ import com.example.pzespolowe.Repositories.ProduktyZamowienieRepository;
 import com.example.pzespolowe.Repositories.ZamowienieRepository;
 import com.example.pzespolowe.Services.ProduktService;
 import org.springframework.boot.Banner;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/panel/admin")
+@Secured("ROLE_ADMIN")
 public class AdminPanelController {
     private final ProduktService service;
     private final ProduktRepository repository;
