@@ -118,7 +118,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item pt-2">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link active" href="dashboard.html"
                            th:href="@{__${#httpServletRequest.requestURL}__/../../proces}" aria-expanded="false">
                             <i class="fas fa-cogs" aria-hidden="true"></i>
                             <span class="hide-menu">Proces</span>
@@ -135,7 +135,7 @@
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="basic-table.html"
                            th:href="@{__${#httpServletRequest.requestURL}__/../../basic-table}" aria-expanded="false">
                             <i class="fa fa-table" aria-hidden="true"></i>
-                            <span class="hide-menu">Basic Table</span>
+                            <span class="hide-menu">Zamknięte zamówienia</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -147,9 +147,9 @@
                     </li>
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="add_product.html"
-                           th:href="@{__${#httpServletRequest.requestURL}__/../../add_product}" aria-expanded="false">
-                            <i class="fa fa-columns" aria-hidden="true"></i>
-                            <span class="hide-menu">Blank Page</span>
+                           th:href="@{__${#httpServletRequest.requestURL}__/../add_product}" aria-expanded="false">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <span class="hide-menu">Dodaj produkt</span>
                         </a>
                     </li>
                     <li class="sidebar-item" hidden="hidden">
@@ -223,7 +223,7 @@
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html"
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link active" href="profile.html"
                                        th:href="@{__${#httpServletRequest.requestURL}__/../pack}" aria-expanded="false">
                                         <i class="fas fa-cog" aria-hidden="true"></i>
                                         <span class="hide-menu" style="color: black">Pakowanie zamówień</span>
@@ -249,7 +249,37 @@
                 </div>
                 <div class="col-xs-16 col-sm-6 col-md-9">
                     <div class="white-box">
-                        <h3 class="box-title">Wybierz opcje z menu po lewej stronie</h3>
+                        <h3 class="box-title">Pakowanie paczek</h3>
+                        <br />
+
+                        <table class="table text-nowrap">
+                            <thead>
+                            <tr>
+                                <th class="border-top-0">ID Zamówienia</th>
+                                <th class="border-top-0">Adres Zamieszkania</th>
+                                <th class="border-top-0">Produkty</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="zamowienie :${zamowienia}">
+                                <!--/*@thymesVar id="zamowienie" type="com.example.pzespolowe.Models.Zamowienie"*/-->
+                                <td th:text="${zamowienie.id}"></td>
+                                <td th:text="${zamowienie.adresZamiesz}"></td>
+<!--                                <td th:text="${zamowienie.getProdukts()}">-->
+                                <td>
+                                    <ul class="list-group">
+                                        <!--/*@thymesVar id="prod" type="com.example.pzespolowe.Models.Produkt"*/-->
+                                        <li class="list-group-item" th:each="prod : ${zamowienie.getProdukts()}"
+                                            th:text="${prod.id} + '   ' + ${prod.nazwaProd}"></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <a th:href="@{__${#httpServletRequest.requestURL}__/../postman}">
+                            <button class="btn btn-primary" style="width: 100%; height: 50px;" role="button">Paczki spakowane</button>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -41,6 +41,17 @@ public class Produkt {
     @PrimaryKeyJoinColumn
     private Magazyn magazyn;
 
+    public Produkt() {
+    }
+
+    public Produkt(String nazwaProd, Integer pojemnosc, Double cena, String rodzaj, Magazyn magazyn) {
+        this.nazwaProd = nazwaProd;
+        this.pojemnosc = pojemnosc;
+        this.cena = cena;
+        this.rodzaj = rodzaj;
+        this.magazyn = magazyn;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -87,5 +98,11 @@ public class Produkt {
 
     public void setZdjeciaProd(ZdjeciaProd zdjeciaProd) {
         this.zdjeciaProd = zdjeciaProd;
+    }
+
+    @Override
+    public String toString() {
+        return "\nId: " + id +
+                "\nNazwa produktu: " + nazwaProd;
     }
 }

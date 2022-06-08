@@ -135,7 +135,7 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="basic-table.html"
                                th:href="@{__${#httpServletRequest.requestURL}__/../basic-table}" aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
-                                <span class="hide-menu">Basic Table</span>
+                                <span class="hide-menu">Zamknięte zamówienia</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -147,9 +147,9 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="add_product.html"
-                               th:href="@{__${#httpServletRequest.requestURL}__/../blank}" aria-expanded="false">
-                                <i class="fa fa-columns" aria-hidden="true"></i>
-                                <span class="hide-menu">Blank Page</span>
+                               th:href="@{__${#httpServletRequest.requestURL}__/../add_product}" aria-expanded="false">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                <span class="hide-menu">Dodaj produkt</span>
                             </a>
                         </li>
                         <li class="sidebar-item" hidden="hidden">
@@ -178,7 +178,7 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Basic Table</h4>
+                        <h4 class="page-title">Zamknięte zamówienia</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
@@ -200,26 +200,26 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Produkty</h3>
+                            <h3 class="box-title">Zakończone zamówienia</h3>
                             <div class="table-responsive">
                                 <table class="table text-nowrap">
                                     <thead>
                                     <tr>
                                         <th class="border-top-0">ID</th>
-                                        <th class="border-top-0">Nazwa produktu</th>
-                                        <th class="border-top-0">Pojemność</th>
-                                        <th class="border-top-0">Rodzaj</th>
-                                        <th class="border-top-0">Zdjęcie</th>
+                                        <th class="border-top-0">ID klienta</th>
+                                        <th class="border-top-0">Adres</th>
+                                        <th class="border-top-0">Data zamówienia</th>
+                                        <th class="border-top-0">Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="produkt :${produkty}">
-                                        <!--/*@thymesVar id="produkt" type="com.example.pzespolowe.Models.Produkt"*/-->
-                                        <td th:text="${produkt.id}"></td>
-                                        <td th:text="${produkt.nazwaProd}"></td>
-                                        <td th:text="${produkt.pojemnosc}"></td>
-                                        <td th:text="${produkt.rodzaj}"></td>
-                                        <td th:text="${produkt.zdjeciaProd.src}"></td>
+                                    <tr th:each="zamowienie :${zamowienia}">
+                                        <!--/*@thymesVar id="zamowienie" type="com.example.pzespolowe.Models.Zamowienie"*/-->
+                                        <td th:text="${zamowienie.id}"></td>
+                                        <td th:text="${zamowienie.idKl}"></td>
+                                        <td th:text="${zamowienie.adresZamiesz}"></td>
+                                        <td th:text="${zamowienie.dataZam}"></td>
+                                        <td th:text="${zamowienie.status}"></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -227,86 +227,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="white-box">
-                            <h3 class="box-title">Basic Table</h3>
-                            <p class="text-muted">Add class <code>.table</code></p>
-                            <div class="table-responsive">
-                                <table class="table text-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th class="border-top-0">#</th>
-                                            <th class="border-top-0">First Name</th>
-                                            <th class="border-top-0">Last Name</th>
-                                            <th class="border-top-0">Username</th>
-                                            <th class="border-top-0">Role</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Deshmukh</td>
-                                            <td>Prohaska</td>
-                                            <td>@Genelia</td>
-                                            <td>admin</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Deshmukh</td>
-                                            <td>Gaylord</td>
-                                            <td>@Ritesh</td>
-                                            <td>member</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Sanghani</td>
-                                            <td>Gusikowski</td>
-                                            <td>@Govinda</td>
-                                            <td>developer</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Roshan</td>
-                                            <td>Rogahn</td>
-                                            <td>@Hritik</td>
-                                            <td>supporter</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Joshi</td>
-                                            <td>Hickle</td>
-                                            <td>@Maruti</td>
-                                            <td>member</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>Nigam</td>
-                                            <td>Eichmann</td>
-                                            <td>@Sonu</td>
-                                            <td>supporter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Right sidebar -->
-                <!-- ============================================================== -->
-                <!-- .right-sidebar -->
-                <!-- ============================================================== -->
-                <!-- End Right sidebar -->
-                <!-- ============================================================== -->
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->

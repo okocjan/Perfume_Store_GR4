@@ -1,24 +1,25 @@
 package com.example.pzespolowe.Controllers;
 
-import com.example.pzespolowe.Models.Produkt;
-import com.example.pzespolowe.Models.ProduktyZamowienie;
+import com.example.pzespolowe.Models.Projection.ProdZamProjection;
+import com.example.pzespolowe.Models.Status;
 import com.example.pzespolowe.Models.Zamowienie;
 import com.example.pzespolowe.Repositories.ProduktyZamowienieRepository;
 import com.example.pzespolowe.Repositories.ZamowienieRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/panel/admin/proces")
 public class ProcesController {
 
+    private final Logger logger = LoggerFactory.getLogger(ProcesController.class);
     private final ZamowienieRepository zamowienieRepository;
     private final ProduktyZamowienieRepository produktyZamowienieRepository;
 
@@ -30,32 +31,22 @@ public class ProcesController {
     @GetMapping("/select")
     public ModelAndView selectOrder() {
         ModelAndView mav = new ModelAndView("/admin/proces/select_order");
-        List<Zamowienie> zamList = zamowienieRepository.findAll();
+        List<Zamowienie> zamList = zamowienieRepository.findZamowienieByStatus("IN_PROGRESS");
         mav.addObject("zamowienia", zamList);
         return mav;
     }
     @GetMapping("/prepare")
     public ModelAndView prepareProduct() {
         ModelAndView mav = new ModelAndView("/admin/proces/prepare_product");
-        List<ProduktyZamowienie> prodList = produktyZamowienieRepository.findProduktyZamowienieByStatus();
-        List<Integer> list = prodList.stream().map(ProduktyZamowienie::getId).toList();
-        Map<ProduktyZamowienie, Integer> testMap = new HashMap<>();
-
-        for(ProduktyZamowienie r : prodList) {
-            if(testMap.containsKey(r)) {
-                testMap.put(r, testMap.get(r) + 1);
-            } else {
-                testMap.put(r, 1);
-            }
-        }
-
-        System.out.println(testMap);
-        mav.addObject("produktyZamowienia", testMap);
+        List<ProdZamProjection> prodList = produktyZamowienieRepository.testQ();
+        mav.addObject("produktyZamowienia", prodList);
         return mav;
     }
     @GetMapping("/pack")
     public ModelAndView packProduct() {
         ModelAndView mav = new ModelAndView("/admin/proces/pack_product");
+        List<Zamowienie> zamList = zamowienieRepository.findZamowienieByStatus("PREPARING");
+        mav.addObject("zamowienia", zamList);
         return mav;
     }
     @GetMapping("/postman")
@@ -67,5 +58,39 @@ public class ProcesController {
     public ModelAndView finishProcess() {
         ModelAndView mav = new ModelAndView("/admin/proces/finish_process");
         return mav;
+    }
+
+    @PostMapping("/toggle")
+    public String testowanie(
+            @ModelAttribute("zamowienia") Zamowienie zamowienie,
+            @RequestParam(value = "select_order", required = false) Integer[] id,
+            BindingResult bindingResult, Model model) {
+
+        List<Integer> idki = new ArrayList<>(Arrays.asList(id));
+        zamowienieRepository.findAll()
+                .stream()
+                .filter(zamowienie1 -> idki.contains(zamowienie1.getId()))
+                .forEach(zamowienie1 -> {
+                    zamowienie1.setStatus(Status.PREPARING);
+                    zamowienieRepository.save(zamowienie1);
+                    logger.info("Statuses update has been successful");
+                });
+        return "redirect:/panel/admin/proces/prepare";
+    }
+
+    @GetMapping("/finish/complete")
+    public String finishOrders() {
+        zamowienieRepository.findAll()
+                .stream()
+                .filter(zamowienie -> zamowienie.getStatus().equals(Status.PREPARING))
+                .forEach(zamowienie -> {
+                    zamowienie.setStatus(Status.COMPLETED);
+                    Status oldStatus = zamowienie.getStatus();
+                    zamowienieRepository.save(zamowienie);
+                    logger.info("Statuses update has been successful[from " + oldStatus + " to " +
+                            zamowienie.getStatus() + "]");
+                });
+
+        return "redirect:/panel/admin/proces";
     }
 }

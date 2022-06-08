@@ -20,6 +20,13 @@ public class Magazyn {
     @Column(name = "ILOSC", nullable = false)
     private Integer ilosc;
 
+    public Magazyn() {
+    }
+
+    public Magazyn(Integer ilosc) {
+        this.ilosc = ilosc;
+    }
+
     public Integer getIlosc() {
         return ilosc;
     }
