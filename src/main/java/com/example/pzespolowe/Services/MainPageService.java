@@ -2,24 +2,29 @@ package com.example.pzespolowe.Services;
 
 
 import com.example.pzespolowe.Models.Produkt;
+import com.example.pzespolowe.Models.Projection.BestsellersProjection;
 import com.example.pzespolowe.Models.Projection.ProdAndZdjModel;
 import com.example.pzespolowe.Models.ZdjeciaProd;
 import com.example.pzespolowe.Repositories.ProduktRepository;
+import com.example.pzespolowe.Repositories.ProduktyZamowienieRepository;
 import com.example.pzespolowe.Repositories.ZdjeciaProdRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class MainPageService {
     private final ProduktRepository produktRepository;
     private final ZdjeciaProdRepository zdjeciaProdRepository;
+    private final ProduktyZamowienieRepository produktyZamowienieRepository;
 
-    public MainPageService(ProduktRepository produktRepository, ZdjeciaProdRepository zdjeciaProdRepository) {
+    public MainPageService(ProduktRepository produktRepository, ZdjeciaProdRepository zdjeciaProdRepository, ProduktyZamowienieRepository produktyZamowienieRepository) {
         this.produktRepository = produktRepository;
         this.zdjeciaProdRepository = zdjeciaProdRepository;
+        this.produktyZamowienieRepository = produktyZamowienieRepository;
     }
 
     public List<List<ProdAndZdjModel>> getProdukts() {
@@ -67,6 +72,39 @@ public class MainPageService {
         toReturn.add(meskie);
 
         return toReturn;
+    }
+
+    public ProdAndZdjModel getProdukt(Integer id) {
+        Optional<Produkt> prod = produktRepository.findById(id);
+        if (prod.isEmpty()) {
+            return null;
+        }
+        List<String> zdj = zdjeciaProdRepository.findAll()
+                .stream()
+                .filter(zdjeciaProd -> zdjeciaProd.getId() == id)
+                .map(ZdjeciaProd::getSrc).toList();
+
+        ProdAndZdjModel toRet = new ProdAndZdjModel();
+        toRet.setNazwa(prod.get().getNazwaProd());
+        toRet.setImagePath(zdj.get(0));
+        toRet.setCena(prod.get().getCena());
+        toRet.setPojemnosc(prod.get().getPojemnosc());
+        toRet.setId(prod.get().getId());
+        toRet.setOpis(prod.get().getOpis());
+        toRet.setRodzaj(prod.get().getRodzaj());
+
+        return toRet;
+    }
+
+    public List<BestsellersProjection> getBestsellers() {
+        List<BestsellersProjection> lista = produktyZamowienieRepository.getBestsellers();
+
+        List<BestsellersProjection> toRet = new ArrayList<>();
+        toRet.add(lista.get(0));
+        toRet.add(lista.get(1));
+        toRet.add(lista.get(2));
+
+        return toRet;
     }
 
 }

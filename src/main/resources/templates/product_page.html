@@ -45,7 +45,7 @@
             <div class="col-sm-12">
                <div class="custom_menu">
                   <ul>
-                     <li><a href="#">Bestsellery</a></li>
+                     <li><a href="#" th:href="@{/bestsellers}">Bestsellery</a></li>
                      <li><a href="#">Nowości</a></li>
                      <li><a href="#">Promocje</a></li>
                   </ul>
@@ -60,7 +60,7 @@
       <div class="container">
          <div class="row">
             <div class="col-sm-12">
-               <div class="logo"><a href="index.html"><img src="../assets/MainPage/img/logo.png"></a></div>
+               <div class="logo"><a href="index.html" th:href="@{/}"><img src="../assets/MainPage/img/logo.png"></a></div>
             </div>
          </div>
       </div>
@@ -72,9 +72,9 @@
          <div class="containt_main">
             <div id="mySidenav" class="sidenav">
                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-               <a href="index.html">Strona Głowna</a>
-               <a href="test.html">Perfumy Damskie</a>
-               <a href="test.html">Perfumy Damskie</a>
+               <a href="index.html" th:href="@{/}">Strona Głowna</a>
+               <a href="test.html" th:href="@{/perfume/female}">Perfumy Damskie</a>
+               <a href="test.html" th:href="@{/perfume/male}">Perfumy Męskie</a>
             </div>
             <span class="toggle_icon" onclick="openNav()"><img src="../assets/MainPage/img/toggle-icon.png"></span>
             <div class="dropdown">
@@ -128,35 +128,37 @@
 </div>
 
 <!-- protukt -->
-<div class="box_product">
-   <div class="product_img"><img src="../assets/MainPage/img/calvin-klein-ck-in2u-eau-de-toilette-pentru-femei___29.jpeg"></div>
-</div>
-<!-- protukt info -->
-<div class="box_product_info">
-   <h4 class="perfume_text" th:text="${product.nazwaProd}"></h4>      <!-- nazwa -->
-   <p class="price_text">Cena:  <span style="color: #262626;">63,90 zł</span></p> <!-- cena -->
-   <p class="product_desc">woda toaletowa dla mężczyzn</p> <!-- krotki opis -->
-   <div class="btn_main">
-      <div class="buy_bt_single"><a href="#">Kup Teraz</a></div>
+<div th:object="${produkt}">
+   <div class="box_product">
+      <div class="product_img"><img src="#" th:src="${produkt.getImagePath()}"></div>
+   </div>
+   <!-- protukt info -->
+   <div class="box_product_info">
+      <h4 class="perfume_text" th:text="${produkt.getNazwa()}"></h4>      <!-- nazwa -->
+      <p class="price_text">Cena:  <span style="color: #262626;" th:text="${produkt.getCena()} + ' PLN'"></span></p> <!-- cena -->
+      <div th:switch="${produkt.getRodzaj()}">
+         <p class="product_desc" th:case="'M'">Perfumy Męskie</p> <!-- krotki opis -->
+         <p class="product_desc" th:case="'D'">Perfumy Damskie</p> <!-- krotki opis -->
+      </div>
+      <div class="btn_main">
+         <div class="buy_bt_single"><a href="#">Kup Teraz</a></div>
+      </div>
+   </div>
+   <div class="product_desc_long">
+      <p class="description_top">OPIS</p>
+      <p class="description" th:text="${produkt.getOpis()}"> <!-- dlugi opis -->
+         Wyraź w
+      </p>
    </div>
 </div>
-<div class="product_desc_long">
-   <p class="description_top">OPIS</p>
-   <p class="description"> <!-- dlugi opis -->
-      Wyraź w pełni tęsknotę swojego ciała za jeszcze większą świeżością,
-      jeszcze silniejszymi przeżyciami i jeszcze intensywniejszą przyjemnością.
-      Męska woda perfumowana Davidoff Cool Water Intense zalewa falą hedonizmu, której nie można zatrzymać.
-   </p>
-</div>
-
-<!-- protukt info end -->
+><!-- protukt info end -->
 
 <div class="footer_section layout_padding">
    <div class="container">
-      <div class="footer_logo"><a href="index.html"><img src="../assets/MainPage/img/logo_footer.png"></a></div>
+      <div class="footer_logo"><a href="index.html" th:href="@{/}"><img src="../assets/MainPage/img/logo_footer.png"></a></div>
       <div class="footer_menu">
          <ul>
-            <li><a href="#">Bestsellery</a></li>
+            <li><a href="#" th:href="@{/bestsellers}">Bestsellery</a></li>
             <li><a href="#">Nowości</a></li>
             <li><a href="#">Promocje</a></li>
          </ul>
