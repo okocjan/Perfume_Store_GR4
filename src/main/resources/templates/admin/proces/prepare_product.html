@@ -50,7 +50,7 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <a class="navbar-brand" href="dashboard.html"
-                   th:href="@{__${#httpServletRequest.requestURL}__/../../dashboard}">
+                   th:href="@{/panel/admin/dashboard}">
                     <!-- Logo icon -->
                     <b class="logo-icon">
                         <!-- Dark Logo icon -->
@@ -112,47 +112,49 @@
                     <!-- User Profile-->
                     <li class="sidebar-item pt-2">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
-                           th:href="@{__${#httpServletRequest.requestURL}__/../../dashboard}" aria-expanded="false">
+                           th:href="@{/panel/admin/dashboard}" aria-expanded="false">
                             <i class="far fa-clock" aria-hidden="true"></i>
                             <span class="hide-menu">Dashboard</span>
                         </a>
                     </li>
                     <li class="sidebar-item pt-2">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link active" href="dashboard.html"
-                           th:href="@{__${#httpServletRequest.requestURL}__/../../proces}" aria-expanded="false">
+                           th:href="@{/panel/admin/proces}" aria-expanded="false">
                             <i class="fas fa-cogs" aria-hidden="true"></i>
                             <span class="hide-menu">Proces</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
+                    <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="basic-table.html"
-                           th:href="@{__${#httpServletRequest.requestURL}__/../../basic-table}" aria-expanded="false">
+                           th:href="@{/panel/admin/basic-table}" aria-expanded="false">
                             <i class="fa fa-table" aria-hidden="true"></i>
                             <span class="hide-menu">Zamknięte zamówienia</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="warehouse.html"
+                           th:href="@{/panel/admin/warehouse}" aria-expanded="false">
+                            <i class="fa fa-table" aria-hidden="true"></i>
+                            <span class="hide-menu">Magazyn</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="fontawesome.html"
-                           th:href="@{__${#httpServletRequest.requestURL}__/../../fontawesome}" aria-expanded="false">
+                           th:href="@{/panel/admin/fontawesome}" aria-expanded="false">
                             <i class="fa fa-font" aria-hidden="true"></i>
-                            <span class="hide-menu">Icon</span>
+                            <span class="hide-menu">Ikony</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="add_product.html"
-                           th:href="@{__${#httpServletRequest.requestURL}__/../add_product}" aria-expanded="false">
+                           th:href="@{/panel/admin/add_product}" aria-expanded="false">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                             <span class="hide-menu">Dodaj produkt</span>
                         </a>
                     </li>
-                    <li class="sidebar-item" hidden="hidden">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="404.html"
-                           th:href="@{__${#httpServletRequest.requestURL}__/../../404}" aria-expanded="false">
-                            <i class="fa fa-info-circle" aria-hidden="true"></i>
-                            <span class="hide-menu">Error 404</span>
-                        </a>
-                    </li>
                 </ul>
+
             </nav>
             <!-- End Sidebar navigation -->
         </div>
@@ -203,35 +205,35 @@
                                 <!-- User Profile-->
                                 <li class="sidebar-item pt-2">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
-                                       th:href="@{__${#httpServletRequest.requestURL}__/../select}" aria-expanded="false">
+                                       th:href="@{/panel/admin/proces/select}" aria-expanded="false">
                                         <i class="fas fa-cog" aria-hidden="true"></i>
                                         <span class="hide-menu" style="color: black">Wybór zamówień</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item pt-2">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link active" href="dashboard.html"
-                                       th:href="@{__${#httpServletRequest.requestURL}__/../prepare}" aria-expanded="false">
+                                       th:href="@{/panel/admin/proces/prepare}" aria-expanded="false">
                                         <i class="fas fa-cog" aria-hidden="true"></i>
                                         <span class="hide-menu" style="color: black">Przygotowanie produktów</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html"
-                                       th:href="@{__${#httpServletRequest.requestURL}__/../pack}" aria-expanded="false">
+                                       th:href="@{/panel/admin/proces/pack}" aria-expanded="false">
                                         <i class="fas fa-cog" aria-hidden="true"></i>
                                         <span class="hide-menu" style="color: black">Pakowanie zamówień</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="basic-table.html"
-                                       th:href="@{__${#httpServletRequest.requestURL}__/../postman}" aria-expanded="false">
+                                       th:href="@{/panel/admin/proces/postman}" aria-expanded="false">
                                         <i class="fas fa-cog" aria-hidden="true"></i>
                                         <span class="hide-menu" style="color: black">Zamówienie kuriera</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="basic-table.html"
-                                       th:href="@{__${#httpServletRequest.requestURL}__/../finish}" aria-expanded="false">
+                                       th:href="@{/panel/admin/proces/finish}" aria-expanded="false">
                                         <i class="fas fa-cog" aria-hidden="true"></i>
                                         <span class="hide-menu" style="color: black">Zakończenie procesu</span>
                                     </a>
@@ -261,7 +263,7 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <a th:href="@{__${#httpServletRequest.requestURL}__/../pack}">
+                            <a th:href="@{/panel/admin/proces/pack}">
                                 <button class="btn btn-primary" style="width: 100%; height: 50px;" role="button">Przejdź do pakowania</button>
                             </a>
                         </div>

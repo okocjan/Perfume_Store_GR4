@@ -1,10 +1,14 @@
 package com.example.pzespolowe.Services;
 
 
+import com.example.pzespolowe.Dto.BasketProductDto;
+import com.example.pzespolowe.Models.Koszyk;
 import com.example.pzespolowe.Models.Produkt;
+import com.example.pzespolowe.Models.Projection.BasketProjection;
 import com.example.pzespolowe.Models.Projection.BestsellersProjection;
 import com.example.pzespolowe.Models.Projection.ProdAndZdjModel;
 import com.example.pzespolowe.Models.ZdjeciaProd;
+import com.example.pzespolowe.Repositories.KoszykRepository;
 import com.example.pzespolowe.Repositories.ProduktRepository;
 import com.example.pzespolowe.Repositories.ProduktyZamowienieRepository;
 import com.example.pzespolowe.Repositories.ZdjeciaProdRepository;
@@ -21,10 +25,13 @@ public class MainPageService {
     private final ZdjeciaProdRepository zdjeciaProdRepository;
     private final ProduktyZamowienieRepository produktyZamowienieRepository;
 
-    public MainPageService(ProduktRepository produktRepository, ZdjeciaProdRepository zdjeciaProdRepository, ProduktyZamowienieRepository produktyZamowienieRepository) {
+    private final KoszykRepository koszykRepository;
+
+    public MainPageService(ProduktRepository produktRepository, ZdjeciaProdRepository zdjeciaProdRepository, ProduktyZamowienieRepository produktyZamowienieRepository, KoszykRepository koszykRepository) {
         this.produktRepository = produktRepository;
         this.zdjeciaProdRepository = zdjeciaProdRepository;
         this.produktyZamowienieRepository = produktyZamowienieRepository;
+        this.koszykRepository = koszykRepository;
     }
 
     public List<List<ProdAndZdjModel>> getProdukts() {
@@ -105,6 +112,19 @@ public class MainPageService {
         toRet.add(lista.get(2));
 
         return toRet;
+    }
+
+    public BasketProductDto getBasketItems() {
+        BasketProductDto basketProductDto = new BasketProductDto();
+        List<BasketProjection> toRet = koszykRepository.getBasket();
+
+        toRet.stream()
+                .forEach(item -> {
+                    basketProductDto.getBasketItems().add(item);
+                    basketProductDto.setFinalPrice(basketProductDto.getFinalPrice() + item.getPrice());
+                });
+
+        return basketProductDto;
     }
 
 }

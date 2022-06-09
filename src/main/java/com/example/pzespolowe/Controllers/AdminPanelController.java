@@ -1,23 +1,18 @@
 package com.example.pzespolowe.Controllers;
 
 import com.example.pzespolowe.Dto.SaveProductDto;
-import com.example.pzespolowe.Models.Magazyn;
-import com.example.pzespolowe.Models.Produkt;
-import com.example.pzespolowe.Models.ProduktyZamowienie;
-import com.example.pzespolowe.Models.Zamowienie;
-import com.example.pzespolowe.Repositories.ProduktRepository;
-import com.example.pzespolowe.Repositories.ProduktyZamowienieRepository;
-import com.example.pzespolowe.Repositories.ZamowienieRepository;
+import com.example.pzespolowe.Models.*;
+import com.example.pzespolowe.Models.Projection.MagazynProjection;
+import com.example.pzespolowe.Repositories.*;
 import com.example.pzespolowe.Services.ProduktService;
-import org.springframework.boot.Banner;
+import com.example.pzespolowe.Util.FileUploadUtil;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -27,23 +22,39 @@ public class AdminPanelController {
     private final ProduktRepository repository;
     private final ZamowienieRepository zamowienieRepository;
 
+    private final MagazynRepository magazynRepository;
+    private final ZdjeciaProdRepository zdjeciaProdRepository;
+
     private final ProduktyZamowienieRepository produktyZamowienieRepository;
-    public AdminPanelController(ProduktService service, ProduktRepository repository, ZamowienieRepository zamowienieRepository, ProduktyZamowienieRepository produktyZamowienieRepository) {
+
+    public AdminPanelController(ProduktService service, ProduktRepository repository, ZamowienieRepository zamowienieRepository, MagazynRepository magazynRepository, ZdjeciaProdRepository zdjeciaProdRepository, ProduktyZamowienieRepository produktyZamowienieRepository) {
         this.service = service;
         this.repository = repository;
         this.zamowienieRepository = zamowienieRepository;
+        this.magazynRepository = magazynRepository;
+        this.zdjeciaProdRepository = zdjeciaProdRepository;
         this.produktyZamowienieRepository = produktyZamowienieRepository;
     }
 
-    @GetMapping({"/dashboard", "/"})
+    @GetMapping({"/dashboard", "/", ""})
     public ModelAndView showAdminPage() {
         ModelAndView mav = new ModelAndView("/admin/dashboard");
         return mav;
     }
 
+    @GetMapping("/warehouse")
+    public ModelAndView getMagazyn() {
+        ModelAndView mav = new ModelAndView("/admin/warehouse");
+        List<MagazynProjection> listaMag = magazynRepository.getMagazynQuantity();
+
+        mav.addObject("magazyn", listaMag);
+
+        return mav;
+    }
+
     @GetMapping("/404")
     public ModelAndView showErrorPage() {
-        ModelAndView mav = new ModelAndView("/admin/404");
+        ModelAndView mav = new ModelAndView("/admin/error");
         return mav;
     }
 
@@ -63,8 +74,28 @@ public class AdminPanelController {
     }
 
     @PostMapping("/add_product/add")
-    public String addProductToRepo(@ModelAttribute SaveProductDto saveProductDto, Model model) {
+    public String addProductToRepo(@ModelAttribute SaveProductDto saveProductDto,
+                                   @RequestParam(value = "imagePath", required = false) MultipartFile multipartFile) throws IOException {
         System.out.println(saveProductDto);
+        Produkt produkt = new Produkt();
+        produkt.setCena(saveProductDto.getPrice());
+        produkt.setNazwaProd(saveProductDto.getName());
+        produkt.setOpis(saveProductDto.getDescription());
+        produkt.setPojemnosc(saveProductDto.getCapacity());
+        produkt.setRodzaj(saveProductDto.getType());
+
+        Produkt savedProd = repository.save(produkt);
+        System.out.println(savedProd.getId());
+
+        zdjeciaProdRepository.save(new ZdjeciaProd(savedProd, "../assets/img/" + savedProd.getId() + "/" +
+                saveProductDto.getMultipartFile().getOriginalFilename()));
+        magazynRepository.save(new Magazyn(savedProd, saveProductDto.getQuantity()));
+
+        String fileName = StringUtils.cleanPath(saveProductDto.getMultipartFile().getOriginalFilename());
+
+        String uploadDir = "src/main/resources/assets/img/" + savedProd.getId();
+
+        FileUploadUtil.saveFile(uploadDir, fileName, saveProductDto.getMultipartFile());
 //        repository.save(new Produkt(saveProductDto.getName(), saveProductDto.getQuantity(),
 //                saveProductDto.getPrice(), saveProductDto.getType(),
 //                new Magazyn(saveProductDto.getQuantity())));

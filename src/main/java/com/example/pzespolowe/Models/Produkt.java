@@ -111,6 +111,14 @@ public class Produkt {
         this.zdjeciaProd = zdjeciaProd;
     }
 
+    public Magazyn getMagazyn() {
+        return magazyn;
+    }
+
+    public void setMagazyn(Magazyn magazyn) {
+        this.magazyn = magazyn;
+    }
+
     @Override
     public String toString() {
         return "\nId: " + id +
