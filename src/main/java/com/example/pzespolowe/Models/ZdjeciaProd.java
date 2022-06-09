@@ -23,6 +23,23 @@ public class ZdjeciaProd{
     @Column(name = "SRC", nullable = false, length = 512)
     private String src;
 
+    public ZdjeciaProd() {
+    }
+
+    public ZdjeciaProd(Integer id, String src) {
+        this.id = id;
+        this.src = src;
+    }
+
+    public ZdjeciaProd(Produkt produkt, String src) {
+        this.produkt = produkt;
+        this.src = src;
+    }
+
+    public ZdjeciaProd(String src) {
+        this.src = src;
+    }
+
     public Integer getId() {
         return id;
     }

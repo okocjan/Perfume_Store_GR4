@@ -23,7 +23,13 @@ public class Magazyn {
     public Magazyn() {
     }
 
-    public Magazyn(Integer ilosc) {
+    public Magazyn(Integer id, Integer ilosc) {
+        this.id = id;
+        this.ilosc = ilosc;
+    }
+
+    public Magazyn(Produkt produkt, Integer ilosc) {
+        this.produkt = produkt;
         this.ilosc = ilosc;
     }
 

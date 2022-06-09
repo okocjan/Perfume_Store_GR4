@@ -1,12 +1,15 @@
 package com.example.pzespolowe.Controllers;
 
+import com.example.pzespolowe.Dto.BasketProductDto;
+import com.example.pzespolowe.Models.Koszyk;
 import com.example.pzespolowe.Models.Produkt;
+import com.example.pzespolowe.Models.Projection.BasketProjection;
 import com.example.pzespolowe.Models.Projection.BestsellersProjection;
 import com.example.pzespolowe.Models.Projection.ProdAndZdjModel;
 import com.example.pzespolowe.Services.MainPageService;
+import org.hibernate.engine.jdbc.batch.internal.BasicBatchKey;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.BasicPermission;
@@ -66,4 +69,27 @@ public class MainPageController {
 
         return mav;
     }
+
+    @GetMapping("/basket")
+    public ModelAndView getBasket(){
+        ModelAndView mav = new ModelAndView("basket");
+
+        BasketProductDto basket = service.getBasketItems();
+        List<BasketProjection> lista = basket.getBasketItems();
+        double finalPrice = basket.getFinalPrice();
+        mav.addObject("basketItems", lista);
+        mav.addObject("finPrice", finalPrice);
+//        mav.addObject("koszyk", new Koszyk());
+
+        return mav;
+    }
+
+    @PostMapping("/add-to-basket")
+    public String addToBasket(@RequestBody ProdAndZdjModel produkt) {
+        System.out.println(produkt);
+
+        return "redirect:/";
+    }
+
+
 }

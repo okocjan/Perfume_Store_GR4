@@ -11,6 +11,11 @@ spring:
   main:
     allow-circular-references: true
     banner-mode: off
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      enabled: on
 server:
   error:
     whitelabel:
