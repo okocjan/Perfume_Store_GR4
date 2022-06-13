@@ -1,0 +1,42 @@
+<!DOCTYPE html>    
+<html lang="pl"xmlns:th="http://www.thymeleaf.org">
+<head>    
+    <meta charset="utf-8">
+    <title>Strona Logowania</title>    
+    <link rel="stylesheet" type="text/css" th:href="@{../assets/AdminPanel/css/style.css}">
+<!--    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">-->
+</head>    
+<header>
+         
+  <div id="top-header">
+           
+      <div id="logo">
+          <img src="../assets/AdminPanel/img/logo.png" />
+      </div>   
+  </div>   
+
+  <div id="header-image-menu">
+
+  </div>
+</header>
+<body>       
+    <div class="login">    
+    <form id="login">
+        <label><b>Login:    
+        </b>    
+        </label>    
+        <input type="text"id="Uname">
+        <br><br>    
+        <label><b>Haslo:  
+        </b>    
+        </label>    
+        <input type="Password" id="Pass">
+        <br><br>    
+        <input type="button" id="log" value="Zaloguj">
+        <br><br>    
+        <input type="checkbox" id="check">    
+        <span>Zapamiętaj Hasło</span>    
+    </form>     
+</div>    
+</body>    
+</html>     

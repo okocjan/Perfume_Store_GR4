@@ -1,0 +1,27 @@
+spring:
+  thymeleaf:
+    cache: false
+  jpa:
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:mysql://145.239.92.87:3306/sklep
+    username: sklepView
+    password: uhBx3M6qny5ch4Su
+  main:
+    allow-circular-references: true
+    banner-mode: off
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      enabled: on
+server:
+  error:
+    whitelabel:
+      enabled: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
