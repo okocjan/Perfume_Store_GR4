@@ -25,15 +25,15 @@ public class AdminPanelController {
     private final MagazynRepository magazynRepository;
     private final ZdjeciaProdRepository zdjeciaProdRepository;
 
-    private final ProduktyZamowienieRepository produktyZamowienieRepository;
 
-    public AdminPanelController(ProduktService service, ProduktRepository repository, ZamowienieRepository zamowienieRepository, MagazynRepository magazynRepository, ZdjeciaProdRepository zdjeciaProdRepository, ProduktyZamowienieRepository produktyZamowienieRepository) {
+    public AdminPanelController(ProduktService service, ProduktRepository repository,
+                                ZamowienieRepository zamowienieRepository, MagazynRepository magazynRepository,
+                                ZdjeciaProdRepository zdjeciaProdRepository) {
         this.service = service;
         this.repository = repository;
         this.zamowienieRepository = zamowienieRepository;
         this.magazynRepository = magazynRepository;
         this.zdjeciaProdRepository = zdjeciaProdRepository;
-        this.produktyZamowienieRepository = produktyZamowienieRepository;
     }
 
     @GetMapping({"/dashboard", "/", ""})
@@ -49,12 +49,6 @@ public class AdminPanelController {
 
         mav.addObject("magazyn", listaMag);
 
-        return mav;
-    }
-
-    @GetMapping("/404")
-    public ModelAndView showErrorPage() {
-        ModelAndView mav = new ModelAndView("/admin/error");
         return mav;
     }
 
@@ -111,10 +105,6 @@ public class AdminPanelController {
     @GetMapping("/proces")
     public ModelAndView showProcesPage() {
         ModelAndView mav = new ModelAndView("/admin/proces");
-        List<Zamowienie> zamList = zamowienieRepository.findAll();
-        List<ProduktyZamowienie> prodZam = produktyZamowienieRepository.findProduktyZamowienieByStatus();
-        mav.addObject("zamowienia", zamList);
-        mav.addObject("produktyZamowienia", prodZam);
         return mav;
     }
 }

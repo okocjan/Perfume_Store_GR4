@@ -49,6 +49,18 @@ public class Zamowienie {
     public Zamowienie() {
     }
 
+    public Zamowienie(String adresZamiesz, Faktury faktury, Klient idKl, KodyRabatowe idRabat,
+                      List<Produkt> produkts, Wysylki wysylki, Status status) {
+        this.dataZam = LocalDate.now();
+        this.adresZamiesz = adresZamiesz;
+        this.faktury = faktury;
+        this.idKl = idKl;
+        this.idRabat = idRabat;
+        this.produkts = produkts;
+        this.wysylki = wysylki;
+        this.status = status;
+    }
+
     public Integer getId() {
         return id;
     }

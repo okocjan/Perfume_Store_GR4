@@ -13,7 +13,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/panel/admin/proces")
@@ -87,7 +89,7 @@ public class ProcesController {
                     zamowienie.setStatus(Status.COMPLETED);
                     Status oldStatus = zamowienie.getStatus();
                     zamowienieRepository.save(zamowienie);
-                    logger.info("Statuses update has been successful[from " + oldStatus + " to " +
+                    logger.info("Status update has been successful [from " + oldStatus + " to " +
                             zamowienie.getStatus() + "]");
                 });
 

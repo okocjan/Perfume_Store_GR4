@@ -11,7 +11,7 @@ public class BasketProductDto {
 
     public BasketProductDto() {
         basketItems = new ArrayList<>();
-        finalPrice = new Double(0);
+        finalPrice = (double) 0;
     }
 
     public List<BasketProjection> getBasketItems() {
@@ -28,5 +28,13 @@ public class BasketProductDto {
 
     public void setFinalPrice(Double finalPrice) {
         this.finalPrice = finalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "BasketProductDto{" +
+                "basketItems=" + basketItems +
+                ", finalPrice=" + finalPrice +
+                '}';
     }
 }
