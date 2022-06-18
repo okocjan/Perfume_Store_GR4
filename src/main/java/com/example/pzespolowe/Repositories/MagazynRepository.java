@@ -16,4 +16,9 @@ public interface MagazynRepository extends JpaRepository<Magazyn, Produkt> {
             "join magazyn as m " +
             "on p.ID = m.ID_PR")
     List<MagazynProjection> getMagazynQuantity();
+
+    @Query(nativeQuery = true, value = "select m.ID_PR, m.ILOSC " +
+            "from magazyn as m " +
+            "where ID_PR = :id")
+    Magazyn findByProduktId(Integer id);
 }

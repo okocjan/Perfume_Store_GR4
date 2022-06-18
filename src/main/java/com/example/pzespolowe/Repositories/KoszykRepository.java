@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface KoszykRepository extends JpaRepository<Koszyk, Integer> {
 
-    @Query(nativeQuery = true, value = "SELECT p.nazwa_prod as name, p.cena as price, " +
+    @Query(nativeQuery = true, value = "SELECT k.id as id, p.ID as prid, p.nazwa_prod as name, p.cena as price, " +
             "zp.src as src FROM " +
             "zdjecia_prod as zp " +
             "join produkt as p " +

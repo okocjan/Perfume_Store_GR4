@@ -2,21 +2,18 @@ package com.example.pzespolowe.Services;
 
 
 import com.example.pzespolowe.Dto.BasketProductDto;
-import com.example.pzespolowe.Models.Koszyk;
-import com.example.pzespolowe.Models.Produkt;
+import com.example.pzespolowe.Models.*;
 import com.example.pzespolowe.Models.Projection.BasketProjection;
 import com.example.pzespolowe.Models.Projection.BestsellersProjection;
 import com.example.pzespolowe.Models.Projection.ProdAndZdjModel;
-import com.example.pzespolowe.Models.ZdjeciaProd;
-import com.example.pzespolowe.Repositories.KoszykRepository;
-import com.example.pzespolowe.Repositories.ProduktRepository;
-import com.example.pzespolowe.Repositories.ProduktyZamowienieRepository;
-import com.example.pzespolowe.Repositories.ZdjeciaProdRepository;
+import com.example.pzespolowe.Repositories.*;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,14 +21,23 @@ public class MainPageService {
     private final ProduktRepository produktRepository;
     private final ZdjeciaProdRepository zdjeciaProdRepository;
     private final ProduktyZamowienieRepository produktyZamowienieRepository;
-
+    private final KlientRepository klientRepository;
     private final KoszykRepository koszykRepository;
-
-    public MainPageService(ProduktRepository produktRepository, ZdjeciaProdRepository zdjeciaProdRepository, ProduktyZamowienieRepository produktyZamowienieRepository, KoszykRepository koszykRepository) {
+    private final ZamowienieRepository zamowienieRepository;
+    private final WysylkiRepository wysylkiRepository;
+    private final MagazynRepository magazynRepository;
+    public MainPageService(ProduktRepository produktRepository, ZdjeciaProdRepository zdjeciaProdRepository,
+                           ProduktyZamowienieRepository produktyZamowienieRepository, KlientRepository klientRepository,
+                           KoszykRepository koszykRepository, ZamowienieRepository zamowienieRepository,
+                           WysylkiRepository wysylkiRepository, MagazynRepository magazynRepository) {
         this.produktRepository = produktRepository;
         this.zdjeciaProdRepository = zdjeciaProdRepository;
         this.produktyZamowienieRepository = produktyZamowienieRepository;
+        this.klientRepository = klientRepository;
         this.koszykRepository = koszykRepository;
+        this.zamowienieRepository = zamowienieRepository;
+        this.wysylkiRepository = wysylkiRepository;
+        this.magazynRepository = magazynRepository;
     }
 
     public List<List<ProdAndZdjModel>> getProdukts() {
@@ -123,8 +129,54 @@ public class MainPageService {
                     basketProductDto.getBasketItems().add(item);
                     basketProductDto.setFinalPrice(basketProductDto.getFinalPrice() + item.getPrice());
                 });
+        basketProductDto.setFinalPrice(Double.parseDouble((new DecimalFormat("##.##")
+                .format(basketProductDto.getFinalPrice())).replace(",", ".")));
 
         return basketProductDto;
     }
 
+    public void addProductToBasket(Integer id) {
+        Klient klient = klientRepository.getById(1);
+        Produkt produkt = produktRepository.getById(id);
+
+        koszykRepository.save(new Koszyk(klient, produkt, 0));
+    }
+
+    public void removeProductFromBasket(Integer id) {
+        koszykRepository.deleteById(id);
+    }
+
+    public void finalizeOrder(Integer idKl, List<Integer> productsIds, Double finalPrice) {
+        idKl = 1;
+        Optional<Klient> klient = klientRepository.findById(idKl);
+        List<Produkt> produkts = new ArrayList<>();
+
+        for (Integer i: productsIds) {
+            if (i != null) produkts.add(produktRepository.findById(i).get());
+        }
+
+        koszykRepository.deleteAll();
+
+        Zamowienie zamowienie = zamowienieRepository.save(new Zamowienie(klient.get().getAdres(),
+                null, klient.get(),
+                null, produkts,
+                null,
+                Status.IN_PROGRESS));
+
+        for (Produkt p : zamowienie.getProdukts()) {
+            ProduktyZamowienie prod = new ProduktyZamowienie(zamowienie, p);
+            produktyZamowienieRepository.save(prod);
+        }
+
+        String trackNr = UUID.randomUUID().toString().replace("-", "");
+        Wysylki wysylka = new Wysylki(zamowienie, "DPD", 0, trackNr, finalPrice);
+        wysylkiRepository.save(wysylka);
+
+        for (Produkt p: produkts) {
+            Produkt prod = produktRepository.findById(p.getId()).get();
+            Magazyn magItem = magazynRepository.findByProduktId(prod.getId());
+            magItem.setIlosc(magItem.getIlosc() - 1);
+            magazynRepository.save(magItem);
+        }
+    }
 }

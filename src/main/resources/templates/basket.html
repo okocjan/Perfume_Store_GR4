@@ -110,7 +110,7 @@
                     </div>
                     <div class="login_menu">
                         <ul>
-                            <li><a href="#">
+                            <li><a href="#" th:href="@{/basket}">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
 
                                 <span class="padding_10">Koszyk</span></a>
@@ -134,32 +134,45 @@
                         <div class="row">
                             <div class="col"><h4><b>Koszyk</b></h4></div>
                         </div>
-                    </div>    
+                    </div>
                     <div class="row border-top border-bottom" th:each="items :${basketItems}">
                         <div class="row main align-items-center">
-                            <div class="col-2"><!--/*@thymesVar id="items" type="com.example.pzespolowe.Models.Projection.BasketProjection"*/-->
-                            <img class="img-fluid" src="asd" th:src="${items.getSrc()}"></div>
-                            <div class="col">
-                                <div class="row text-muted" th:text="${items.getName()}">Perfume</div>
-                                <div class="row" style="text-align: center;">Meski</div>
+                            <div class="row">
+                                <div class="col">
+                                    <!--/*@thymesVar id="items" type="com.example.pzespolowe.Models.Projection.BasketProjection"*/-->
+                                <input type="hidden" name="prod_id" th:value="${items.getPrid()}">
+                                <img class="img-fluid" src="asd" th:src="${items.getSrc()}"></div>
+                                <div class="col-6">
+                                    <div class="row text-muted" th:text="${items.getName()}"></div>
+                                    <div class="row" style="text-align: center;">Meski</div>
+                                </div>
+                                <div class="col" th:text="${items.getPrice()}" style="text-align: right;"></div>
+                                <form  class="mt-auto" method="post" th:action="@{/remove-from-basket(itemId=${items.id})}">
+                                    <button type="submit" class="close mt-auto" style="font-size: 30px;">&#10005;</button>
+                                </form>
                             </div>
-                            <div class="col" th:text="${items.getPrice()}">44.00 <span class="close">&#10005;</span></div>
                         </div>
                     </div>
                     <div class="back-to-shop"><a href="#" th:href="@{/}">&leftarrow;<span class="text-muted">Wróć do sklepu</span></a></div>
                 </div>
                 <div class="col-md-4 summary">
                     <div><h5><b>Podsumowanie</b></h5></div>
-                    <hr>
-                    <form>
-                        <p>PRZESYŁKA</p>
-                        <select><option class="text-muted">Przesyłka- FREE</option></select>
+                    <form method="post" th:action="@{/basket/finalize(pr_id=${pr_id}, final_price=${finPrice})}"
+                          th:object="${basketItems}" th:method="post" style="box-sizing: border-box; margin: 0; padding: 0;">
+                        <hr>
+                            <p>PRZESYŁKA</p>
+                            <select>
+                                <option class="text-muted">Przesyłka- FREE</option>
+                            </select>
+                        <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                            <div class="col">CENA</div>
+                            <div class="col text-right" th:object="${finPrice}" th:text="${finPrice}">00.00</div>
+                        </div>
+                        <th:block th:each="items: ${basketItems}">
+                            <input type="hidden" name="pr_id" th:value="${items.getPrid()}">
+                        </th:block>
+                        <button type="submit" class="btn_cart">KUP</button>
                     </form>
-                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                        <div class="col">CENA</div>
-                        <div class="col text-right" th:object="${finPrice}" th:text="${finPrice}">137.00</div>
-                    </div>
-                    <button class="btn_cart">KUP</button>
                 </div>
             </div>
          </div>

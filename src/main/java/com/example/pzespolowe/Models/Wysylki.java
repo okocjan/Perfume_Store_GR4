@@ -1,10 +1,6 @@
 package com.example.pzespolowe.Models;
 
-import org.hibernate.Hibernate;
-
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Table(name = "wysylki", indexes = {
@@ -31,6 +27,17 @@ public class Wysylki {
 
     @Column(name = "CENA", nullable = false)
     private Double cena;
+
+    public Wysylki() {
+    }
+
+    public Wysylki(Zamowienie zamowienie, String kurier, Integer czyPobr, String trackNr, Double cena) {
+        this.zamowienie = zamowienie;
+        this.kurier = kurier;
+        this.czyPobr = czyPobr;
+        this.trackNr = trackNr;
+        this.cena = cena;
+    }
 
     public Double getCena() {
         return cena;
@@ -78,5 +85,15 @@ public class Wysylki {
 
     public void setZamowienie(Zamowienie zamowienie) {
         this.zamowienie = zamowienie;
+    }
+
+    @Override
+    public String toString() {
+        return "\nWysylki{" +
+                ", kurier='" + kurier + '\'' +
+                ", czyPobr=" + czyPobr +
+                ", trackNr='" + trackNr + '\'' +
+                ", cena=" + cena +
+                '}';
     }
 }

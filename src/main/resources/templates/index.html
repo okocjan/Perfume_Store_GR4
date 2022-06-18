@@ -180,8 +180,8 @@
                                  <div class="perfume_img"><img src="../assets/MainPage/img/calvin-klein-ck-in2u-eau-de-toilette-pentru-femei___29.jpeg"
                                                                th:src="${damski.imagePath}"></div>
                                  <div class="btn_main">
-                                    <form method="POST" th:action="@{/add-to-basket(prod=${damski})}">
-                                       <div class="buy_bt"><button type="submit">Kup Teraz</button></div>
+                                    <form method="POST" th:action="@{/add-to-basket(prodId=${damski.id})}">
+                                       <div class="buy_bt"><button type="submit">Dodaj do koszyka</button></div>
                                     </form>
                                     <div class="seemore_bt"><a href="#" th:href="@{/product/{id}(id=${damski.id})}">Zobacz Więcej</a></div>
                                  </div>
@@ -198,13 +198,14 @@
                         <div class="row">
                            <div class="col-lg-4 col-sm-4" th:each="meski :${meskie}">
                               <div class="box_main">
+                                 <!--/*@thymesVar id="meski" type="com.example.pzespolowe.Models.Projection.ProdAndZdjModel"*/-->
                                  <h4 class="perfume_text" th:text="${meski.nazwa}"></h4>
                                  <p class="price_text">Cena:  <span style="color: #262626;" th:text="${meski.cena} + ' PLN'"></span></p>
                                  <div class="cologne_img"><img src="../assets/MainPage/img/versace-woman-woda-perfumowana-dla-kobiet___23.jpeg"
                                                                th:src="${meski.imagePath}"></div>
                                  <div class="btn_main">
-                                    <form method="POST" th:action="@{/add-to-basket(prod=${meski})}">
-                                       <div class="buy_bt"><button type="submit">Kup Teraz</button></div>
+                                    <form method="POST" th:action="@{/add-to-basket(prodId=${meski.id})}">
+                                       <div class="buy_bt"><button type="submit">Dodaj do koszyka</button></div>
                                     </form>
                                     <div class="seemore_bt"><a href="#" th:href="@{/product/{id}(id=${meski.id})}">Zobacz Więcej</a></div>
                                  </div>

@@ -1,23 +1,20 @@
 package com.example.pzespolowe.Controllers;
 
 import com.example.pzespolowe.Dto.BasketProductDto;
-import com.example.pzespolowe.Models.Koszyk;
-import com.example.pzespolowe.Models.Produkt;
 import com.example.pzespolowe.Models.Projection.BasketProjection;
 import com.example.pzespolowe.Models.Projection.BestsellersProjection;
 import com.example.pzespolowe.Models.Projection.ProdAndZdjModel;
 import com.example.pzespolowe.Services.MainPageService;
-import org.hibernate.engine.jdbc.batch.internal.BasicBatchKey;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.security.BasicPermission;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
-public class MainPageController {
+public class MainPageController implements ErrorController {
     private final MainPageService service;
 
     public MainPageController(MainPageService service) {
@@ -77,19 +74,39 @@ public class MainPageController {
         BasketProductDto basket = service.getBasketItems();
         List<BasketProjection> lista = basket.getBasketItems();
         double finalPrice = basket.getFinalPrice();
+
         mav.addObject("basketItems", lista);
         mav.addObject("finPrice", finalPrice);
-//        mav.addObject("koszyk", new Koszyk());
 
         return mav;
     }
 
     @PostMapping("/add-to-basket")
-    public String addToBasket(@RequestBody ProdAndZdjModel produkt) {
-        System.out.println(produkt);
-
+    public String addToBasket(@RequestParam(value = "prodId") int id) {
+        service.addProductToBasket(id);
         return "redirect:/";
     }
 
+    @PostMapping("/remove-from-basket")
+    public String removeFromBasket(@RequestParam(value = "itemId") int id) {
+        service.removeProductFromBasket(id);
+        return "redirect:/basket";
+    }
 
+    @PostMapping("/basket/finalize")
+    public String finalizeOrder(@RequestParam(value = "pr_id") Integer[] ids,
+                                @RequestParam(value = "final_price") Double finalPrice) {
+
+        List<Integer> prodIds = Arrays.asList(ids);
+        service.finalizeOrder(1, prodIds, finalPrice);
+
+        return "redirect:/basket";
+    }
+
+    @RequestMapping("/error")
+    public ModelAndView handleError() {
+        ModelAndView mav = new ModelAndView("error");
+
+        return mav;
+    }
 }

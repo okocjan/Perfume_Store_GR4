@@ -76,4 +76,14 @@ public class Klient {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "\nKlient{" +
+                "imie='" + imie + '\'' +
+                ", nazwisko='" + nazwisko + '\'' +
+                ", adres='" + adres + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
